@@ -1,0 +1,173 @@
+/* Page */
+
+body {
+  font-family: monospace;
+}
+
+#line1 {
+  background-color: #c0c0c0;
+}
+
+#line2 {
+  background-color: #18d4f5;
+}
+
+#line3 {
+  background-color: #c0c0c0;
+}
+
+/* Menu */
+
+#menu {
+  border: 2px solid #18d4f5;
+  text-align: right;
+}
+
+#menu a {
+  text-decoration: none;
+}
+
+div#menu ul li {
+  font-size: 10pt;
+  list-style-type: none;
+}
+
+div#menu .home {
+  font-size: 12pt;
+  letter-spacing: 1px;
+}
+div#menu .home a {
+  border-bottom: 2px solid #c0c0c0;
+  color: #505050;
+}
+
+div#menu .home a:hover {
+  color: #18d4f5;
+}
+
+/* Header */
+
+#header {
+  font-weight: bold;
+  font-size: 16pt;
+  border-bottom: 2px solid #18d4f5;
+  color: #505050;
+}
+
+#header a {
+  text-decoration: none;
+}
+
+/* Footer */
+
+#footer {
+  text-align: right;
+  color: #a0a0a0;
+}
+
+#footer a {
+  color: #a0a0a0;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+/* Content */
+
+#content {
+  font-size: 10pt;
+  font-family: sans-serif;
+}
+
+#content a {
+  color: #505050;
+}
+
+#content a:hover {
+  color: #18d4f5;
+}
+
+/* Tags */
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: #18d4f5;
+  text-decoration: none;
+}
+
+a img {
+  border: 2px solid white;
+}
+
+a:hover img {
+  border: 2px solid #18d4f5;
+}
+
+h1 {
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 14pt;
+  color: #505050;
+  border-bottom: 2px solid #18d4f5;
+  margin: 15px 0 10px 0;
+  clear: both;
+}
+
+hr {
+  border: 0;
+  color: #c0c0c0;
+  background-color: #c0c0c0;
+  height: 2px;
+  width: 85%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+h1 a {
+  text-decoration: none;
+}
+
+h2 {
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 12pt;
+  color: #505050;
+  margin: 15px 0 10px 0;
+}
+
+p {
+  margin: 5px 0 5px 0;
+}
+
+code {
+  color: #505050;
+  padding: 0 5px 0 5px;
+}
+
+pre {
+  padding: 5px;
+  margin: 5px;
+  border: 1px dashed black;
+  clear: both;
+}
+
+/* Classes */
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.small {
+  font-size: 8pt;
+  font-family: monospace;
+}
+
