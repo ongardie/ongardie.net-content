@@ -2,8 +2,10 @@
   <h1><a href="${URL_PREFIX}/blog/${slug}/">${title}</a></h1>
   <span class="small">${date}</span>
   <div>
-    <img style="float: left" src="${VAR_URL_PREFIX}/blog/${slug}/thumb.jpg" />
+    % if thumb:
+      <img style="float: left; margin-left: 0" src="${VAR_URL_PREFIX}/blog/${slug}/thumb.jpg" />
+    % endif
     <div style="padding-top: 10px;">${summary}</div>
+    [<a href="${URL_PREFIX}/blog/${slug}/">View full article</a>]
   </div>
-  [<a href="${URL_PREFIX}/blog/${slug}/">View full article</a>]
 </div>
