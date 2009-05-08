@@ -4,6 +4,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="${VAR_URL_PREFIX}/css/layout.css" />
     <link rel="stylesheet" type="text/css" href="${VAR_URL_PREFIX}/css/style.css" />
+    <link rel="alternate"  type="application/rss+xml" href="${URL_PREFIX}/blog/rss.xml" title="Blog RSS Feed" />
     <title>ongardie.net</title>
   </head>
 
@@ -21,7 +22,10 @@
       <ul>
         <li class="home"><a href="/">ongardie.net</a></li>
         <li><a href="/diego/">diego ongaro</a></li>
-        <li><a href="/blog/">blog</a></li>
+        <li>
+            <a href="/blog/">blog</a>
+            <a href="${URL_PREFIX}/blog/rss.xml"><img src="${VAR_URL_PREFIX}/blog/rss.png" style="margin: 0; padding: 0; border: 0" /></a>
+        </li>
       </ul>
     </div>
 
