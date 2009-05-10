@@ -36,6 +36,7 @@ div#menu .home {
   font-size: 12pt;
   letter-spacing: 1px;
 }
+
 div#menu .home a {
   border-bottom: 2px solid #c0c0c0;
   color: #505050;
@@ -57,6 +58,21 @@ div#menu .home a:hover {
 #header a {
   text-decoration: none;
 }
+
+/* Trail */
+
+#trail {
+  color: #a0a0a0;
+}
+
+#trail a {
+  text-decoration: none;
+}
+
+#trail a:hover {
+  text-decoration: underline;
+}
+
 
 /* Footer */
 

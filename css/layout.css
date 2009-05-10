@@ -76,6 +76,13 @@ div#menu .home a {
   padding: 0;
 }
 
+/* Trail */
+
+#trail {
+  margin-left: 15px;
+  margin-top: 2px;
+}
+
 /* Footer */
 
 #footer {
