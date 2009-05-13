@@ -1,0 +1,7 @@
+% for article in articles:
+<div class="section">
+  <h1><a href="${URL_PREFIX}/blog/${article['slug']}/">${article['title']}</a></h1>
+  <span class="small">${article['date']}</span>
+  <div class="entry">${article['blurb']}</div>
+</div>
+% endfor
