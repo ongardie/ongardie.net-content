@@ -172,6 +172,12 @@ pre {
   clear: both;
 }
 
+blockquote {
+  padding: 10px;
+  background-color: #eee;
+  font-style: italic;
+}
+
 /* Classes */
 
 .center {
