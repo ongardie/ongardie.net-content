@@ -102,9 +102,22 @@ div#menu .home a {
   padding-left: 20px;
   padding-right: 75px;
   padding-bottom: 20px;
+  width: 560px;
 }
 
 /* Tags */
+
 img {
   margin: 10px;
+}
+
+/* Classes */
+
+.section {
+  margin: 30px 0 30px 0;
+}
+
+.section .entry {
+  margin: 0 30px 0 30px;
+  width: 500px;
 }

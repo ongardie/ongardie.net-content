@@ -14,7 +14,7 @@ but find the output is cluttered with duplicate entries
 </p>
 
 <pre>
-ongardie@lappy:~$ apt-cache rdepends libpurple0 | tail -n +3 | sort
+$ apt-cache rdepends libpurple0 | tail -n +3 | sort
   finch
   finch
   libpurple-bin
@@ -46,7 +46,7 @@ and sorted the list (with <code>sort</code>) here to make this more obvious.
 Using the above tip to see only unique lines, you can easily work around this bug:
 </p>
 <pre>
-ongardie@lappy:~$ apt-cache rdepends libpurple0 | tail -n +3 | sort -u
+$ apt-cache rdepends libpurple0 | tail -n +3 | sort -u
   finch
   libpurple-bin
   libpurple-dev
