@@ -1,0 +1,79 @@
+<img src="${VAR_URL_PREFIX}/blog/cgit-hacking/cgit-logo.png" alt="cgit logo" style="float:right" />
+<p>
+Last week I hacked a couple new features into
+<a href="http://hjemli.net/git/cgit/about/">cgit</a>, a web interface
+for Git, since it's the one I
+<a href="http://ongardie.net/git/">use on ongardie.net</a>. I added
+https URLs for the Atom feed and also syntax highlighting when viewing
+files.
+</p>
+
+<h2>HTTPs URLs for Cgit's Atom feed</h2>
+<p>
+Cgit generates Atom feeds so that you can keep track of changes from
+your feed reader. Unfortunately, that requires a full URL, which it
+assumed started with <code>http://</code>. This obviously didn't work
+for <code>https://</code>-only installations.
+</p>
+<p>
+I modified cgit to check the <code>HTTPS</code> CGI variable. If it's
+set to <code>on</code>, cgit now generates full URLs starting with
+<code>https://</code>. While this isn't part of the official CGI spec,
+most servers will set it, including Apache and lighttpd.
+</p>
+<p>
+Lars Hjemli, the maintainer of cgit,
+<a href="http://hjemli.net/git/cgit/commit/?h=wip&amp;id=086fef8a4a1a5f90eafb21fcbc4b3731d6736cb1">merged in my change</a>, 
+so it should be part of a future cgit release:
+</p>
+<blockquote>
+<p>
+This looks good. I've merged it into my wip-branch on
+<a href="http://hjemli.net/git/cgit">http://hjemli.net/git/cgit</a>
+where I'll let it cook for a little while before merging to my master.
+</p>
+</blockquote>
+
+<h2>Syntax Highlighting for Cgit</h2>
+<p>
+Cgit is useful for browsing around a project's history, but it didn't do
+syntax highlighting for source code. This made it unpleasant to use for
+reading complete files (as opposed to diffs).
+</p>
+
+<p>
+I modified cgit to make use of the
+<a href="http://www.andre-simon.de/doku/highlight/en/highlight.html">highlight</a>
+program, when available, to color source code. If highlight is
+unavailable or fails, cgit falls back to the old black-and-white view.
+</p>
+
+<p>
+While the patch is small and self-contained, it's specific to highlight
+and just tacked on in the source code. Lars didn't take this one:
+</p>
+<blockquote>
+<p>
+I like the result, but I think the implementation has to be more
+generic. And I'm currently about to add support for a few plugins/hooks
+to cgit which I think can be used to achieve the same result so lets see
+how that works out first, ok?
+</p>
+</blockquote>
+<p>
+I'll be working with Lars on getting a cleaner solution merged into his
+tree once he's added support for plugins. In the mean time, feel free to
+use the code from my repository, which seems to work just fine.
+</p>
+
+<hr />
+<p>
+Both of these features can be found on my cgit repo:
+</p>
+<ul>
+ <li>git clone http://ongardie.net/cgit.git</li>
+ <li><a href="http://ongardie.net/git/cgit/">cgit front-end</a> (running
+here with both of these changes)</li>
+</ul>
+See the <code>https</code> and <code>highlight</code> branches,
+respectively. Both were branched from cgit's <code>master</code> branch.
