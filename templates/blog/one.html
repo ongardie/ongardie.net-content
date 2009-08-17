@@ -2,6 +2,12 @@
   <span class="small">
     ${date}
   </span>
+  % if tags:
+    |
+    % for tag in tags:
+      <a href="${URL_PREFIX}/blog/+${tag}" class="small">${tag}</a>
+    % endfor
+  % endif
 </div>
 
 ${blurb}

@@ -2,6 +2,12 @@
 <div class="section">
   <h1><a href="${URL_PREFIX}/blog/${article['slug']}/">${article['title']}</a></h1>
   <span class="small">${article['date']}</span>
+  % if article['tags']:
+    |
+    % for tag in article['tags']:
+      <a href="${URL_PREFIX}/blog/+${tag}" class="small">${tag}</a>
+    % endfor
+  % endif
   <div class="entry">${article['blurb']}</div>
 </div>
 % endfor
