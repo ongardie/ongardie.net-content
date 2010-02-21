@@ -1,0 +1,43 @@
+<a href="http://www.debian.org/" alt="www.debian.org"><img style="float:right" src="${VAR_URL_PREFIX}/blog/squeeze/debian_logo.png" alt="Debian logo" /></a>
+
+<p>
+I've switched my laptop over from Debian Lenny (stable) to Squeeze (testing).
+While I made it this far with the aging software available in Lenny by
+pulling newer packages from backports and unstable, I finally gave in for
+Python 2.6.
+</p>
+
+<p>
+In case it helps anyone else, my laptop is a Lenovo Thinkpad T61 with an Intel
+graphics chip and wifi card. Much of what broke is related to
+<a href="http://en.wikipedia.org/wiki/Mode-setting#Linux">kernel mode-setting (KMS)</a>.
+Here's the list:
+</p>
+
+<ul>
+<li>I had <code>vga=794</code> in my <code>/etc/default/grub</code>, which is
+no longer compatible. On Squeeze's kernel with this setting, the console
+framebuffer did not display anything. I think the <code>GRUB_GFXMODE</code>
+variable is supposed to replace it.</li>
+<li>X failed to start and failed to let me switch back to the consoles on
+Squeeze's kernel
+(<a href="http://packages.debian.org/squeeze/linux-image-2.6.32-trunk-amd64">linux-image-2.6.32-trunk-amd64</a> 2.6.32-5).
+I think you need an Intel graphics chip and 4GB of RAM to enjoy this bug (which
+seems at least related to FreeDesktop's
+<a href="http://bugs.freedesktop.org/show_bug.cgi?id=25510">Bug #25510</a>).
+If you're so lucky, the kernel in unstable fixes the problem for me
+(<a href="http://packages.debian.org/unstable/linux-image-2.6.32-2-amd64">linux-image-2.6.32-2-amd64</a> 2.6.32-8).</li>
+<li>I had a residual config file that apt did not purge at
+<code>/etc/udev/rules.d/z60_xserver_xorg_input_wacom.rules</code> that caused
+screenfuls of warnings early in the boot process.</li>
+<li>Something has broken <code>ifconfig wlan0 up</code> on boot, but an easy
+work-around is to turn the hardware radio kill switch to off and then back
+to on.</li>
+<li>Despite my efforts, Bluetooth is enabling itself. I'll have to find a way
+to turn that off again.</li>
+<li>Instead of using <code>module-assistant</code> to build the ThinkPad SMAPI
+module, I installed the <code>tp-smapi-dkms</code> package.</li>
+<li>IPython doesn't ship with <code>/usr/bin/ipython2.6</code> yet, but copying
+<code>/usr/bin/ipython2.5</code> seems to work fine. (It uses <code>$0</code>
+to determine which version of Python to call.)</li>
+</ul>
