@@ -1,0 +1,59 @@
+<p>
+Most people seem to have an opinion as to whether exceptions in C++ are slow or
+fast, but very few people have put any useful numbers out there. Here's a lower
+bound:
+</p>
+
+<pre>
+<font face="monospace">
+<font color="#c000c0">#include </font><font color="#c00000">&lt;inttypes.h&gt;</font>
+<font color="#c000c0">#include </font><font color="#c00000">&lt;stdio.h&gt;</font>
+
+<font color="#008000">const</font>&nbsp;<font color="#008000">uint64_t</font>&nbsp;count = <font color="#c00000">1000000</font>;
+
+<font color="#008000">inline</font>&nbsp;<font color="#008000">uint64_t</font>
+rdtsc()
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008000">uint32_t</font>&nbsp;lo, hi;
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#af5f00">asm</font>&nbsp;<font color="#008000">volatile</font>(<font color="#c00000">&quot;rdtsc&quot;</font>&nbsp;: <font color="#c00000">&quot;=a&quot;</font>&nbsp;(lo), <font color="#c00000">&quot;=d&quot;</font>&nbsp;(hi));
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#af5f00">return</font>&nbsp;(((<font color="#008000">uint64_t</font>) hi &lt;&lt; <font color="#c00000">32</font>) | lo);
+}
+
+<font color="#008000">int</font>
+main()
+{
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// Measure the cost of throwing and catching an int.</font>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008000">uint64_t</font>&nbsp;start = rdtsc();
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#af5f00">for</font>&nbsp;(<font color="#008000">uint64_t</font>&nbsp;i = <font color="#c00000">0</font>; i &lt; count; i++) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#af5f00">try</font>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#af5f00">throw</font>&nbsp;<font color="#c00000">0</font>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <font color="#af5f00">catch</font>&nbsp;(<font color="#008000">int</font>) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// do nothing</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008000">uint64_t</font>&nbsp;stop = rdtsc();
+&nbsp;&nbsp;&nbsp;&nbsp;printf(<font color="#c00000">&quot;Cycles per exception: </font><font color="#c000c0">%lu</font><font color="#c000c0">\n</font><font color="#c00000">&quot;</font>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (stop - start) / count);
+}
+</font>
+</pre>
+
+<p>
+The code just measures the time it takes to throw the number 0 as an exception
+and catch it.
+</p>
+
+<p>
+Using g++ version 4.4.4, compiled with -O3 in 64-bit mode, and running on an
+otherwise idle Intel Xeon E5620 CPU at 2.4 GHz, this benchmark takes 2.18 to
+2.21 microseconds on average per exception.
+</p>
+
+<p>
+So the cheapest exceptions on a modern CPU would cost about 2 microseconds.
+When you throw an exception in a real project rather than a microbenchmark,
+this cost is significantly higher. Anecdotally, we typically see times closer
+to 5 microseconds for exceptions in the context of <a
+href="http://ramcloud.stanford.edu">RAMCloud</a>, the project I work on at
+school.
+</p>
