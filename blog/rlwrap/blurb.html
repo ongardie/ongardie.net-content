@@ -1,0 +1,33 @@
+<p>
+Dealing with a basic command-line prompt in a loop can be painful, so many
+programs, such as shells, interactive programming languages and debuggers,
+provide a more featureful prompt. For example, pressing the up and down arrows
+in a good prompt will flip through previously entered input lines. Programs
+will often make use of the
+<a href="http://www.gnu.org/s/readline/">GNU readline library</a> for this
+functionality.
+</p>
+
+<p>
+If you need to use a program that only has a basic prompt, you may be able to
+wrap it with the program
+<a href="http://utopia.knoware.nl/~hlub/uck/rlwrap/#rlwrap">rlwrap</a> to get
+some more advanced features. From the man page:
+</p>
+<blockquote>
+<p>
+rlwrap  runs  the  specified command, intercepting user input in order to
+provide readline's line editing, persistent history and completion.
+</p>
+<p>[...]</p>
+<p>
+There are many options to add (programmable) completion, handle multi-line
+input, colour and re-write prompts. If  you  don't need them (and you probably
+don't), you can skip the rest of this manpage.
+</p>
+</blockquote>
+
+<p>
+For example, I recently used rlwrap with jdb, the Java debugger, and Ikarus, a
+Scheme compiler.
+</p>
