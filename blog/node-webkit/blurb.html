@@ -1,0 +1,47 @@
+<p>
+Client-side web programming (HTML, JavaScript, CSS) has improved greatly in
+recent years. You could make a reasonable argument that this is the best
+environment for building user interfaces today: it's quick, it looks decent,
+there are tons of libraries and stylesheets available, and the
+developer tools are quite good. Firefox even has a
+<a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/3D_view">3D Inspector</a>
+view these days &mdash; if that doesn't convince you, I don't know what will.
+</p>
+
+<p>
+Meanwhile, <a href="nodejs.org">node.js</a> has become a reasonable platform
+for server-side JavaScript that interacts with the outside world. Node provides
+libraries for accessing the filesystem, making network requests (not just
+HTTP), and running arbitrary processes. And it has over 25,000 third-party
+libraries to help you out.
+</p>
+
+<p>
+This environment already makes sense for building local applications. You'd run
+a node.js server locally to handle interaction with the outside world, and
+you'd load up a web page in your browser to provide the user interface. Your
+browser and server would communicate over HTTP requests as usual.
+Hide the browser's toolbars and it doesn't even look out of place.
+</p>
+
+<p>
+The <a href="https://github.com/rogerwang/node-webkit">node-webkit</a> project
+takes this one forward: it integrates the node.js libraries into a
+<a href="http://www.webkit.org">Webkit</a> environment. So now
+instead of splitting your local application into a server and a client
+component, having these communicate over HTTP, and having to launch these
+separately, you can structure these applications in a much simpler way. There's
+no HTTP involved: your JavaScript just acts on user input directly, calling
+into node.js libraries when it needs to.
+</p>
+
+<p>
+I've been playing around with node-webkit a bit the last few days, and I must
+say I'm impressed with how productive of an environment it is to program in.
+The number of JavaScript libraries out there really makes up for the ugly bits
+of the language. I feel like I've been shying away from building graphical
+applications because of the overhead of doing so with something like PyGTK; I
+think node-webkit might change this. Node-webkit applications require so little
+boilerplate that this approach makes sense even for one-off scripts where you'd
+like user interaction.
+</p>
