@@ -1,0 +1,77 @@
+<p>
+I store nearly all files of even moderate importance in
+<a href="http://git-scm.com">Git</a> (including this blog post). These are
+usually plain-text files, but sometimes it's necessary to put binary files
+under version control. Unfortunately, those are typically difficult to diff and
+merge, but I recently discovered some features of Git that make this less
+painful. This blog post focuses on <a href="http://www.sqlite.org">SQLite</a>
+database files, but at least some of it applies to other binary file types.
+</p>
+
+<p>
+My problem specifically involved managing changes to an SQLite database that
+contained results for a research study. The database was changing as new
+results arrived and were processed, and it was important to me to track its
+changes in case of manual or programming errors.
+</p>
+
+<p>
+SQLite stores its database in a pretty complex format
+(<a href="http://www.sqlite.org/fileformat2.html">described here</a>).
+While diffing two SQLite databases can sometimes be human-readable, this
+entirely depends on the binary that happens to fall right around the modified
+values. It's doable but sometimes requires a lot of annoying horizontal
+scrolling past screenfuls of control characters. Life's too short for that.
+</p>
+
+<p>
+SQLite can dump entire databases out as SQL statements, and Git can be
+configured to do this when generating diffs. In a
+<code>.gitattributes</code> or <code>.git/info/attributes</code> file, give
+Git a filename pattern and the name of a diff driver, which we'll define
+next. In my case, I added:
+</p>
+<pre>
+db.sqlite3 diff=sqlite3
+</pre>
+
+<p>
+Then in <code>.git/config</code> or <code>$HOME/.gitconfig</code>, define the diff driver. Mine looks like:
+</p>
+<pre>
+[diff "sqlite3"]
+    textconv = dumpsqlite3
+</pre>
+
+<p>
+I chose to define an external <code>dumpsqlite3</code> script, since this can
+be useful elsewhere. It just dumps SQL to stdout for the filename given by its
+first argument:
+</p>
+<pre>
+#!/bin/sh
+sqlite3 $1 .dump
+</pre>
+
+<p>
+At this point, <code>git diff</code> should show you plain-text diffs, as
+should browsing Git commits. There's still one problem left: sometimes SQLite's
+binary database will change, but the actual database contents remain the same.
+This results in a <code>git status</code> that says the database has changed
+but a <code>git diff</code> that says it hasn't.
+</p>
+
+<p>
+I don't know enough about SQLite to know why this happens. I thought it was
+because SQLite doesn't compact free space right away in its database files, but
+I ran into a case where even if I vacuum two database files with identical
+contents, they still have different binaries.
+</p>
+
+<p>
+One brute solution would be to dump the database contents to SQL and read
+them back into a "fresh" SQLite database. This should result in a canonical
+binary database, since SQLite doesn't seem to store anything like a
+timestamp in there. I suspect you could have your diff driver do this
+automatically every time it runs, but I haven't tried it yet.
+</p>
