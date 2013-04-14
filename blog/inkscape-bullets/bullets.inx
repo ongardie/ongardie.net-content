@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <_name>Bullets</_name>
+  <id>edu.stanford.ramcloud.diego.bullets</id>
+  <dependency type="executable" location="extensions">bullets.sh</dependency>
+  <effect>
+    <object-type>all</object-type>
+  </effect>
+  <script>
+    <command reldir="extensions">bullets.sh</command>
+  </script>
+</inkscape-extension>

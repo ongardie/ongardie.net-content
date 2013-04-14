@@ -1,0 +1,112 @@
+<p>
+<a href="http://inkscape.org">Inkscape</a> is a good, open-source drawing
+program for vector graphics. I'm currently using it to make a research poster,
+but unfortunately, Inkscape doesn't do bullets. This post discusses your
+options if you want to use bullets in your Inkscape drawing and introduces a
+simple Inkscape extension that makes this much easier.
+</p>
+
+<p>
+Your first option is to use an external program like Scribus or Tex to generate
+the bullets and text, then import that into Inkscape. This seems like a lot of
+work to me. I don't want to flip between different programs or files for this.
+</p>
+
+<p>
+The second option is to draw the bullets manually <em>next to</em> your text
+box. This is pretty time-consuming, but it works if you have just a few bullets
+to place and your text won't change much. A circle is a sane choice, but you
+can use whatever you want as a bullet.
+</p>
+
+<p>
+The third option is to place Unicode bullets manually <em>inside</em> your text
+box. To do this, you're limited to using Unicode characters such as bullets,
+triangles, and dashes. You can find these on the Internet and copy-and-paste
+these into your text boxes. The main drawback with this approach is spacing: if
+you wrap your line, you need to insert spacing to indent the next line. The
+best way to get the same indent level as you had on the line above is to insert
+the same exact Unicode character as before, but this time make it transparent
+(or white). This is workable, but it gets really tedious if you have a lot of
+bullets. It's even more tedious if you want bullets of a different color
+&mdash; in my case, I wanted blue bullets and black text.
+</p>
+
+<p>
+I created a simple Inkscape extension to make the third approach more
+tolerable. The basic idea is to just replace strings in text boxes with
+bullets and spacing. It's easiest if I just show you:
+</p>
+<img src="${VAR_URL_PREFIX}/blog/inkscape-bullets/beforeafter.png" alt="extension transforms special characters into bullets" />
+
+<p>
+Every time you run the extension, it applies the following replacements:
+</p>
+<table>
+<tr>
+<th colspan="2">Input</th>
+<th>Replaced with</th>
+</tr>
+<tr>
+<td>*&nbsp;&nbsp;</td>
+<td>asterisk space space</td>
+<td>top-level bullet</td>
+</tr>
+<tr>
+<td>&#92;&nbsp;&nbsp;</td>
+<td>backslash space space</td>
+<td>indent same as top-level bullet</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;-&nbsp;</td>
+<td>space space space dash space</td>
+<td>second-level bullet</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&#92;&nbsp;</td>
+<td>space space space backslash space</td>
+<td>indent same as second-level bullet</td>
+</tr>
+</table>
+
+<p>
+Here's how to add this extension to Inkscape. You'll need to create two files
+in <code>~/.config/inkscape/extensions/</code>. The first file,
+<a href="${VAR_URL_PREFIX}/blog/inkscape-bullets/bullets.inx">bullets.inx</a>,
+describes to Inkscape how to display and run the extension; it's just
+boilerplate. The second file,
+<a href="${VAR_URL_PREFIX}/blog/inkscape-bullets/bullets.sh">bullets.sh</a>,
+is the code that gets executed when you run the extension:
+</p>
+<pre>
+#!/bin/bash
+
+# top-level bullet and space
+bullet='&lt;tspan style="fill:#3465a4;"&gt;●&lt;&#92;/tspan&gt; '
+bulletnext='&lt;tspan style="fill:none;"&gt;●&lt;&#92;/tspan&gt; '
+
+# second-level bullet and space
+dash=$bulletnext'&lt;tspan style="fill:#3465a4;"&gt; –&lt;&#92;/tspan&gt; '
+dashnext=$bulletnext'&lt;tspan style="fill:none;"&gt; –&lt;&#92;/tspan&gt; '
+
+# the last argument to this script is the filename read from
+shift $(( $# - 1 ))
+f=$1
+
+sed -e "s/&#92;&#92;*  /$bullet/" &#92;
+    -e "s/&#92;&#92;&#92;&#92;  /$bulletnext/" &#92;
+    -e "s/   - /$dash/"  &#92;
+    -e "s/   &#92;&#92;&#92;&#92; /$dashnext/" &#92;
+    $f
+</pre>
+
+<p>
+As you can see, there's not much magic here. The script just runs
+<code>sed</code> to find-and-replace a few strings with Unicode characters of
+the desired color.
+</p>
+
+<p>
+And that's it. It's not the prettiest thing in the world, but now you can
+create bullets in Inkscape without tearing your hair out.
+</p>
