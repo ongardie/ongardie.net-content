@@ -193,3 +193,11 @@ blockquote {
   font-family: monospace;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #c0c0c0;
+  padding: 1ex;
+}
