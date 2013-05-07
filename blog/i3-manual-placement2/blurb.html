@@ -1,0 +1,79 @@
+<p>
+This is the second part of a series on making the i3 window manager work the
+way I want. I left off
+<a href="${URL_PREFIX}/blog/i3-manual-placement">last time</a>
+with the goal of changing the way windows are placed as they are created, and I
+had a couple of pointers from the i3 hacking howto for where to start looking.
+This post covers how I've set up my test environment.
+</p>
+
+<p>
+I started looking in <code>src/manage.c</code> but soon found my way into
+<code>src/con.c</code>, which does most of the grunt work surrounding
+containers. There are a ton of conditional branches in the i3 source code,
+so running i3 with debug logging on (<code>i3 -d all</code>) was essential in
+figuring out which code paths were being executed.
+</p>
+
+<p>
+One particularly relevant log message, <blockquote>Inserting con = x after last
+focused tiling con y</blockquote> led me to <code>con_attach()</code>, the
+function in charge of placing a new window in i3's layout tree. I think that's
+one key function I'll need to change.
+</p>
+
+<p>
+I started playing around with changing the layouts of things and creating extra
+containers in there but quickly got frustrated. The problem was that I was
+<em>using</em> my buggy version of i3 while iterating on the code and testing.
+Testing also became difficult, since running the tools to analyze what's going
+on requires opening new windows, but opening new windows affects i3's state.
+</p>
+
+<p>
+A better approach is to run i3 inside a nested X server. This way you can keep
+your editor, browser, and other tools open outside of the test environment, and
+keep the test environment minimal, clean, and easy to reset.
+</p>
+
+<p>
+I had used <a href="http://en.wikipedia.org/wiki/Xnest">Xnest</a> in the past,
+but I found that i3bar didn't display fonts for me under Xnest. I don't know
+what the problem was there, but I came across
+<a href="http://en.wikipedia.org/wiki/Xephyr">Xephyr</a>, a replacement for
+Xnest that supports modern X extensions. Fortunately, Xephyr can run i3 and
+i3bar properly. Xephyr allows the nested server to grab the keyboard (toggled
+with Ctrl+Shift), which is quite handy for window manager development.
+</p>
+
+<p>
+I'm also getting a lot of mileage from i3's <code>contrib/dump-asy.pl</code>
+script, which uses i3's JSON-based IPC interface to show you a graphical
+representation of the layout tree. This script has been helpful in
+understanding the tree transformations that occur as I test my changes to i3.
+For example, it's showing me that I have a bunch of nested containers with only
+one child (oops). I've made a few minor improvements to the script, and Michael
+Stapelberg has already accepted a couple of these minor patches.
+</p>
+
+<p>
+To use <code>contrib/dump-asy.pl</code> with a nested X server, you need to
+help it find i3's IPC socket. It uses
+<a href="https://metacpan.org/module/AnyEvent::I3">AnyEvent::I3</a> internally,
+whose default constructor finds the i3 running on your current
+<code>DISPLAY</code>. You don't want to launch the script with the
+<code>DISPLAY</code> set to the nested X server, since then it would launch
+also launch <code>gv</code> inside the nested X server. Instead, construct the
+AnyEvent::I3 instance as follows, for a nested X server running on
+<code>DISPLAY=:1</code>:
+</p>
+
+<pre>
+chomp(my $path = qx(DISPLAY=:1 i3 --get-socketpath));
+my $i3 = i3($path);
+</pre>
+
+<p>
+Now that I can use my editor reliably and query what's going on in a controlled
+testing environment, I should be able to make some real progress.
+</p>
