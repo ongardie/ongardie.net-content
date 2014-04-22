@@ -1,0 +1,37 @@
+<p>
+I use Linux exclusively but run Microsoft PowerPoint for some presentations. I
+won't go into the details of why here, but I wanted to record and share a few
+tips I use for getting it to run well. Your mileage may vary, obviously.
+</p>
+
+<p>
+Most importantly, as of this writing, you want no later than PowerPoint 2010.
+</p>
+
+<p>
+The first problem I had is that when I drag a selection rectangle or move
+objects around, the entire drawing area went black. The workaround I use gives
+Wine a big rectangle to manage and draw on. Run <code>cxsetup</code>, go to
+"Wine Configuration", under the "Graphics" tab, enable "Emulate a virtual
+desktop". You'll want to set the resolution (size of the rectangle) based on
+your monitor (I use 1590x840). I still get a black rectangle covering the
+contents of my selection (not the whole drawing area as before), but it's
+fairly usable that way.
+</p>
+
+<p>
+The second problem was that some bullets weren't displaying correctly; they
+were showing an empty rectangle instead. I resolved this by copying a random
+version of <code>wingdings.ttf</code> (with that exact spelling, I guess) into
+<code>~/.cxoffice/Microsoft_Office_2010/drive_c/windows/Fonts</code>. Then I
+had to quit my bottle in <code>cxsetup</code>; no idea what that means.
+</p>
+
+<p>
+I find that it's pretty stable and works pretty well after those changes
+(though I don't use most of the advanced features or animations). Still, I'd
+suggest saving frequently. And I always render to PDF and use a native PDF
+viewer for the actual talks. That's a good idea in general but also necessary
+due to the fixed size virtual desktop, which won't fit nicely on different
+projector sizes.
+</p>
