@@ -1,0 +1,151 @@
+## -*- coding: utf-8 -*-
+
+<%
+DIR = '%s/blurbs/pubs' % VAR_URL_PREFIX
+
+agrawal = 'Parag Agrawal'
+cox = '<a href="http://www.cs.rice.edu/~alc/">Alan L. Cox</a>'
+erickson = 'David Erickson'
+kozyrakis = '<a href="http://csl.stanford.edu/~christos/">Christos Kozyrakis</a>'
+leverich = 'Jacob Leverich'
+mazieres = '<a href="http://www.scs.stanford.edu/~dm/">David Mazières</a>'
+mitra = 'Subhasish Mitra'
+narayanan = 'Aravind Narayanan'
+ongaro = '<a href="%s/diego/">Diego Ongaro</a>' % URL_PREFIX
+ousterhout = '<a href="http://web.stanford.edu/~ouster/">John Ousterhout</a>'
+parulkar = 'Guru Parulkar'
+rixner = '<a href="http://www.cs.rice.edu/~rixner/">Scott Rixner</a>'
+rosenblum = '<a href="http://web.stanford.edu/~mendel/">Mendel Rosenblum</a>'
+rumble = '<a href="http://www.scs.stanford.edu/~rumble/">Stephen M. Rumble</a>'
+stratmann = 'Eric Stratmann'
+stutsman = '<a href="http://www.scs.stanford.edu/~stutsman/">Ryan Stutsman</a>'
+%>
+
+<h3>Consensus: Bridging Theory and Practice</h3>
+
+<p>
+${ongaro}.
+Consensus: Bridging Theory and Practice.
+<em><a href="http://purl.stanford.edu/qr033xr6097">Stanford University Ph.D. Dissertation</a></em>.
+Aug. 2014.
+</p>
+
+<p>
+<a href="${DIR}/dissertation.pdf">PDF</a>,
+<a href="https://github.com/ongardie/dissertation">LaTeX source and various PDFs</a>,
+<a href="https://raftconsensus.github.io">Raft website</a>
+</p>
+
+<p>
+This is my Ph.D. dissertation on the Raft consensus algorithm.
+It's a much extended version of In Search of an Understandable
+Consensus Algorithm (see below). It also describes a simpler form of
+cluster membership changes, which we weren't aware of at the time the
+conference paper was published.
+</p>
+
+<h3>In Search of an Understandable Consensus Algorithm</h3>
+
+<p>
+${ongaro}, ${ousterhout}.
+In Search of an Understandable Consensus Algorithm.
+<em><a href="https://www.usenix.org/conference/atc14/technical-sessions/presentation/ongaro">USENIX Annual Technical Conference (ATC)</a></em>.
+2014.
+<em>Best Paper Award</em>.
+</p>
+
+<p>
+${ongaro}, ${ousterhout}.
+In Search of an Understandable Consensus Algorithm (Extended Version).
+<em>Tech Report</em>.
+May, 2014.
+</p>
+
+<p>
+<a href="${DIR}/raft-atc14.pdf">conference PDF</a>,
+<a href="${DIR}/raft-tr14.pdf">extended version PDF</a>,
+<a href="https://www.usenix.org/conference/atc14/technical-sessions/presentation/ongaro">conference video</a>,
+<a href="https://raftconsensus.github.io">Raft website</a>
+</p>
+
+<p>
+This paper describes the Raft consensus algorithm. The conference version
+was limited in space, and the extended version adds a couple of pages to
+discuss log compaction, client interaction, and a couple of other minor
+topics. My Ph.D. dissertation (see above) expands on the same ideas.
+</p>
+
+<h3>Fast Crash Recovery in RAMCloud</h3>
+
+<p>
+${ongaro}, ${rumble}, ${stutsman}, ${ousterhout}, ${rosenblum}.
+Fast Crash Recovery in RAMCloud.
+<em><a href="http://www.sigops.org/sosp/sosp11/current/">ACM Symposium on Operating Systems Principles (SOSP)</a></em>.
+2011.
+</p>
+
+<p>
+<a href="${DIR}/ramcloud-sosp11.pdf">PDF</a>,
+<a href="http://www.sigops.org/sosp/sosp11/current/2011-Cascais/03-ongaro-online.pdf">single-column PDF</a>,
+<a href="http://www.youtube.com/watch?v=RE3CmdEGv4M">conference video</a>,
+<a href="http://ramcloud.stanford.edu">RAMCloud website</a>
+</p>
+
+<p>
+This paper formed the basis for Ryan's Ph.D. dissertation,
+<a href="http://www.scs.stanford.edu/~stutsman/thesis.pdf">Durability and Crash Recovery in Distributed In-Memory Storage Systems</a> (2013).
+</p>
+
+<h3>The Case for RAMCloud</h3>
+
+<p>
+${ousterhout}, ${agrawal}, ${erickson}, ${kozyrakis}, ${leverich},
+${mazieres}, ${mitra}, ${narayanan}, ${ongaro}, ${parulkar},
+${rosenblum}, ${rumble}, ${stratmann}, and ${stutsman}.
+The Case for RAMCloud.
+<em><a href="http://cacm.acm.org/magazines/2011/7/109885-the-case-for-ramcloud/fulltext">Communications of the ACM (CACM)</a></em>.
+July 2011.
+</p>
+
+<p>
+<a href="${DIR}/ramcloud-cacm11.pdf">PDF</a>,
+<a href="http://ramcloud.stanford.edu">RAMCloud website</a>
+</p>
+
+<p>
+This is a slightly revised and shorter version of
+<a href="http://web.stanford.edu/~ouster/cgi-bin/papers/ramcloud.pdf">The Case for RAMClouds</a>,
+which appeared in <em>Operating Systems Review</em> in 2009. The students
+on the project didn't like having "RAMClouds" in the title, which some
+people had assumed was the project's name, so the "s" was dropped in the
+newer revision. I joined the RAMCloud team shortly after the OSR paper was
+written.
+</p>
+
+<h3>It's Time for Low Latency</h3>
+
+<p>
+${rumble}, ${ongaro}, ${stutsman}, ${rosenblum}, and ${ousterhout}.
+It's Time for Low Latency.
+<em><a href="https://www.usenix.org/legacy/events/hotos11/tech/">USENIX Workshop on Hot Topics in Operating Systems (HotOS)</a></em>.
+2011.
+</p>
+
+<p>
+<a href="${DIR}/latency-hotos11.pdf">PDF</a>,
+<a href="https://www.usenix.org/legacy/events/hotos11/tech/slides/rumble.pdf">conference slides</a>
+</p>
+
+<h3>Scheduling I/O in Virtual Machine Monitors</h3>
+
+<p>
+${ongaro}, ${cox}, and ${rixner}.
+Scheduling I/O in Virtual Machine Monitors.
+<em><a href="http://vee08.cs.tcd.ie/programme.html">ACM International Conference on Virtual Execution Environments (VEE)</a></em>.
+2008.
+</p>
+
+<p>
+<a href="${DIR}/io-vee08.pdf">PDF</a>,
+<a href="http://vee08.cs.tcd.ie/slides/p30-talk.ppt">conference slides</a>
+</p>

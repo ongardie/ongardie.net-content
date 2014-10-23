@@ -134,6 +134,12 @@ h1 {
   clear: both;
 }
 
+h3 {
+  color: #505050;
+  border-bottom: 2px solid #18d4f5;
+  margin: 15px 0 10px 0;
+}
+
 hr {
   border: 0;
   color: #c0c0c0;
