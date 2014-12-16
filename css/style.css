@@ -171,6 +171,10 @@ code {
   padding: 0 5px 0 5px;
 }
 
+pre code {
+  padding: 0;
+}
+
 pre {
   padding: 5px;
   margin: 5px;
