@@ -27,7 +27,7 @@ The monotonic clock in 4.4 is just a typedef to the system clock, so it is
 prone to jumps in time caused by, e.g., NTP. Moreover, up until 4.8, the
 now-called ``std::chrono::steady_clock`` and ``std::chrono::system_clock`` are
 rounded to the nearest microsecond for default libstdc++ compiles. LogCabin
-doesn't strictly need nanosecond granularity, but it sure makes life easier.
+doesn't strictly need nanosecond granularity, but it sure makes life easier<sup>[1](#logcabin-2015-01-05-footnote-1)</sup>.
 For example, with nanosecond granularity you don't have to worry so much about
 ``<`` vs ``<=`` (especially in unit tests), since every clock reading is highly
 likely to be different from the previous.
@@ -99,3 +99,11 @@ I can't say for certain what's coming next. One idea is to start working on
 administrative tools to introspect the LogCabin state and/or extract metrics
 from the LogCabin servers. We'll see. Thanks to [Scale
 Computing](http://www.scalecomputing.com) for supporting this work.
+
+----
+
+1. <a id="logcabin-2015-01-05-footnote-1"></a>Phil White warns that two time
+readings with nanosecond granularity may still return the same value on a
+virtual machine. See [KVM timekeeping
+docs](http://www.mjmwired.net/kernel/Documentation/kvm/timekeeping.txt),
+section 4, for related reading.
