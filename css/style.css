@@ -1,9 +1,5 @@
 /* Page */
 
-body {
-  font-family: monospace;
-}
-
 #line1 {
   background-color: #c0c0c0;
 }
@@ -19,6 +15,7 @@ body {
 /* Menu */
 
 #menu {
+  font-family: monospace;
   border: 2px solid #18d4f5;
   text-align: right;
 }
@@ -28,12 +25,12 @@ body {
 }
 
 div#menu ul li {
-  font-size: 10pt;
+  font-size: 110%;
   list-style-type: none;
 }
 
 div#menu .home {
-  font-size: 12pt;
+  font-size: 120%;
   letter-spacing: 1px;
 }
 
@@ -49,8 +46,8 @@ div#menu .home a:hover {
 /* Header */
 
 #header {
+  font-family: monospace;
   font-weight: bold;
-  font-size: 16pt;
   border-bottom: 2px solid #18d4f5;
   color: #505050;
 }
@@ -62,6 +59,7 @@ div#menu .home a:hover {
 /* Trail */
 
 #trail {
+  font-family: monospace;
   color: #a0a0a0;
 }
 
@@ -77,6 +75,7 @@ div#menu .home a:hover {
 /* Footer */
 
 #footer {
+  font-family: monospace;
   text-align: right;
   color: #a0a0a0;
 }
@@ -93,7 +92,6 @@ div#menu .home a:hover {
 /* Content */
 
 #content {
-  font-size: 10pt;
   font-family: sans-serif;
 }
 
@@ -124,20 +122,39 @@ a:hover img {
   border: 2px solid #18d4f5;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
   font-family: monospace;
-  font-weight: bold;
-  font-size: 14pt;
   color: #505050;
+}
+
+h1 {
+  font-weight: bold;
+  border-bottom: 2px solid #18d4f5;
+  margin: 15px 0 10px 0;
+  clear: both;
+}
+
+h2 {
+  font-weight: bold;
   border-bottom: 2px solid #18d4f5;
   margin: 15px 0 10px 0;
   clear: both;
 }
 
 h3 {
-  color: #505050;
-  border-bottom: 2px solid #18d4f5;
   margin: 15px 0 10px 0;
+}
+
+h4 {
+  font-size: 120%;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  text-decoration: none;
+}
+
+#content h1 {
+  font-size: 180%;
 }
 
 hr {
@@ -148,18 +165,6 @@ hr {
   width: 85%;
   margin-top: 12px;
   margin-bottom: 12px;
-}
-
-h1 a {
-  text-decoration: none;
-}
-
-h2 {
-  font-family: monospace;
-  font-weight: bold;
-  font-size: 12pt;
-  color: #505050;
-  margin: 15px 0 10px 0;
 }
 
 p {
@@ -180,6 +185,7 @@ pre {
   margin: 5px;
   border: 1px dashed black;
   clear: both;
+  overflow-x: auto;
 }
 
 blockquote {
@@ -199,8 +205,8 @@ blockquote {
 }
 
 .small {
-  font-size: 8pt;
   font-family: monospace;
+  font-size: 80%;
 }
 
 table {
