@@ -13,6 +13,8 @@ and there's a lot of value in working through it. LogCabin is significantly
 easier to run now than it was before, and it should be easier for the rest of
 you to install on your systems, too.
 
+---
+
 Getting Started
 ---------------
 

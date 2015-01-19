@@ -8,6 +8,13 @@
       <a href="${URL_PREFIX}/blog/+${tag}" class="small">${tag}</a>
     % endfor
   % endif
-  <div class="entry">${article['blurb']}</div>
+  <div class="entry">
+  % if 'summary' in article:
+    ${article['summary']}
+    <p><a href="${URL_PREFIX}/blog/${article['slug']}/">Continue reading full article</a></p>
+  % else:
+    ${article['blurb']}
+  % endif
+  </div>
 </div>
 % endfor

@@ -7,6 +7,8 @@ briefly so that subsequent posts make sense. I was part of
 which is primarily focused on [RAMCloud](http://ramcloud.stanford.edu),
 a large-scale in-memory distributed storage system.
 
+---
+
 I started working on RAMCloud soon after joining Stanford
 ([Ryan](https://twitter.com/rstutsman/) made the first commit the month after I
 started), and I worked on various low-level parts of the system and master

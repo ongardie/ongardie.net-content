@@ -6,6 +6,8 @@ assert its lease but give up after few seconds, and in case of a timeout, it
 might need to crash or stop other processes from doing things that may no
 longer be safe.
 
+---
+
 Not Quite C++11
 ---------------
 
