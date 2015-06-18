@@ -86,7 +86,7 @@ just work.
 Performance Improvements
 ------------------------
 
-After the [last blog post](http://ongardie.net/dev/blog/logcabin-2015-02-11/),
+After the [last blog post](${URL_PREFIX}/blog/logcabin-2015-02-11/),
 I was inspired to look through the code I used for my dissertation benchmarks
 and [take inventory](https://github.com/logcabin/logcabin/issues/95) of it.
 It had various changes that aren't necessarily good ideas, and two that were useful:

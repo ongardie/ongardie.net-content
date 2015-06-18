@@ -24,7 +24,7 @@ been working with [Scale Computing](http://www.scalecomputing.com/) to turn
 LogCabin into a production system. We've improved its usability, updated how it
 writes to disk, added a few features such as client-side timeouts, and
 discovered and fixed a few bugs (for more details, see the [series of blog
-posts](http://ongardie.net/blog/+logcabin/)). The latest push added rolling
+posts](${URL_PREFIX}/blog/+logcabin/)). The latest push added rolling
 upgrades, something we wanted to have in place right from the first release.
 
 Today, we're ready to release 1.0 to the world, and we invite others to give it
