@@ -76,6 +76,23 @@ code layout. Further slides explain a little bit about what's in each directory.
 <a href="https://logcabin.github.io/talk/#/codewalkthrough"><img src="${VAR_URL_PREFIX}/blog/logcabin-1.1/directories.png" alt="LogCabin code layout" style="max-width: 100%" /></a>
 </center>
 
+
+LogCabin in RAMCloud
+--------------------
+
+**Update:** I've added support for LogCabin v1.1 in the
+[RAMCloud](http://ramcloud.stanford.edu) storage system, where it can now be
+used for metadata storage and leader (coordinator) election. RAMCloud keeps all
+data in DRAM and offers 5 to 10 microsecond remote access times. It has a
+modular interface called
+[ExternalStorage](https://github.com/PlatformLab/RAMCloud/blob/master/src/ExternalStorage.h)
+for its external coordination needs; this is implemented by
+[ZooStorage](https://github.com/PlatformLab/RAMCloud/blob/master/src/ZooStorage.h)
+for [ZooKeeper](https://zookeeper.apache.org) and is now joined by
+[LogCabinStorage](https://github.com/PlatformLab/RAMCloud/blob/master/src/LogCabinStorage.h)
+for LogCabin.
+
+
 Next for LogCabin
 -----------------
 
