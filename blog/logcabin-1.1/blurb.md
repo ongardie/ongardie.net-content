@@ -1,7 +1,7 @@
 Announcing the release of LogCabin 1.1! This is the second stable release of the
 [LogCabin](https://github.com/logcabin/logcabin) coordination service, which
 includes a C++ implementation of the
-[Raft consensus algorithm](https://raftconsensus.github.io).
+[Raft consensus algorithm](https://raft.github.io).
 
 ---
 

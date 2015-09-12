@@ -30,7 +30,7 @@ order? If the game was understandability, I just couldn't defend Paxos on this
 question.
 
 Eventually, John went off during a weekend and proposed ALPO, the first version
-of the algorithm that matured into the [Raft](https://raftconsensus.github.io)
+of the algorithm that matured into the [Raft](https://raft.github.io)
 consensus algorithm. Raft turned into my thesis topic, and I developed an
 implementation of it in C++ called
 [LogCabin](https://github.com/logcabin/logcabin). Meanwhile, Raft gained

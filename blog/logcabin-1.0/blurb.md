@@ -1,7 +1,7 @@
 LogCabin 1.0 is out! This is the first stable release of the
 [LogCabin](https://github.com/logcabin/logcabin) coordination service, which
 includes a C++ implementation of the
-[Raft consensus algorithm](https://raftconsensus.github.io). If you're new
+[Raft consensus algorithm](https://raft.github.io). If you're new
 to these, I recently spoke about Raft and a little about LogCabin at the
 [Sourcegraph Hacker
 Meetup](http://www.meetup.com/Sourcegraph-Hacker-Meetup/events/221199291/) in
@@ -15,7 +15,7 @@ walk-through of how Raft works.
 </center>
 
 I initially developed LogCabin at Stanford University while co-designing the
-[Raft consensus algorithm](https://raftconsensus.github.io) with my advisor,
+[Raft consensus algorithm](https://raft.github.io) with my advisor,
 [John Ousterhout](https://web.stanford.edu/~ouster/). LogCabin was the system
 we used to put Raft into code, which in turn influenced the design of Raft and
 the way we described it. By the time I graduated, LogCabin had a fairly mature
