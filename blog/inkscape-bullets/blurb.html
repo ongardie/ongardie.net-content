@@ -78,7 +78,17 @@ in <code>~/.config/inkscape/extensions/</code>. The first file,
 describes to Inkscape how to display and run the extension; it's just
 boilerplate. The second file,
 <a href="${VAR_URL_PREFIX}/blog/inkscape-bullets/bullets.sh">bullets.sh</a>,
-is the code that gets executed when you run the extension:
+is the code that gets executed when you run the extension. To make it
+executable, run:
+</p>
+<pre>
+chmod +x ~/.config/inkscape/extensios/bullets.sh
+</pre>
+
+<p>
+There's not much magic here in <code>bullets.sh</code>. The script just runs
+<code>sed</code> to find-and-replace a few strings with Unicode characters of
+the desired color:
 </p>
 <pre>
 #!/bin/bash
@@ -103,10 +113,9 @@ sed -e "s/&#92;&#92;*  /$bullet/" &#92;
 </pre>
 
 <p>
-As you can see, there's not much magic here. The script just runs
-<code>sed</code> to find-and-replace a few strings with Unicode characters of
-the desired color.
+Here's what the menu item looks like:
 </p>
+<img src="${VAR_URL_PREFIX}/blog/inkscape-bullets/screenshot.png" alt="extensions menu screenshot" />
 
 <p>
 And that's it. It's not the prettiest thing in the world, but now you can
