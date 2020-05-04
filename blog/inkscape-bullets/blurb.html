@@ -78,15 +78,22 @@ in <code>~/.config/inkscape/extensions/</code>. The first file,
 describes to Inkscape how to display and run the extension; it's just
 boilerplate. The second file,
 <a href="${VAR_URL_PREFIX}/blog/inkscape-bullets/bullets.sh">bullets.sh</a>,
-is the code that gets executed when you run the extension. To make it
-executable, run:
+is the code that gets executed when you run the extension. It needs to be
+marked executable. To save these, run:
 </p>
 <pre>
-chmod +x ~/.config/inkscape/extensios/bullets.sh
+cd ~/.config/inkscape/extensions/
+curl -O https://ongardie.net/var/blog/inkscape-bullets/bullets.inx
+curl -O https://ongardie.net/var/blog/inkscape-bullets/bullets.sh
+chmod +x bullets.sh
 </pre>
 
 <p>
-There's not much magic here in <code>bullets.sh</code>. The script just runs
+Don't forget to restart Inkscape so it can notice this change.
+</p>
+
+<p>
+There's not much magic in <code>bullets.sh</code>. The script just runs
 <code>sed</code> to find-and-replace a few strings with Unicode characters of
 the desired color:
 </p>
