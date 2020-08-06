@@ -11,7 +11,7 @@ Upcoming 1.0.0 Release
 We're pushing for a 1.0.0 release of LogCabin in the coming weeks. It's close.
 [Milestone 1.0.0](https://github.com/logcabin/logcabin/milestones/1.0.0) on
 GitHub tracks the release-blocking issues (there are currently 7 open).
-[Scale](http://www.scalecomputing.com) will be rolling this out to QA and
+[Scale](https://www.scalecomputing.com) will be rolling this out to QA and
 eventually to customers, so we want to make sure it's ready. This has meant
 additional testing and bug fixing, but also adding support for rolling
 upgrades.
@@ -36,7 +36,7 @@ clients and servers may support different versions of the network protocols.
 
 [Issue 99](https://github.com/logcabin/logcabin/issues/99) and the related
 issues track the work of versioning various formats and protocols in LogCabin.
-LogCabin will use [Semantic Versioning](http://semver.org) for its release
+LogCabin will use [Semantic Versioning](https://semver.org) for its release
 numbering, and the new
 [RELEASES.md](https://github.com/logcabin/logcabin/blob/master/RELEASES.md)
 file describes the various pieces that make up LogCabin's public API. That file
@@ -55,9 +55,9 @@ an example (after running a LogCabin server on localhost):
     $ alias logcabin='build/Examples/TreeOps --quiet --cluster=localhost'
     $ logcabin --help
     Run various operations on a LogCabin replicated state machine.
-    
+
     Usage: build/Examples/TreeOps [options] <command> [<args>]
-    
+
     Commands:
       mkdir <path>    If no directory exists at <path>, create it.
       list <path>     List keys within directory at <path>. Alias: ls.
@@ -69,7 +69,7 @@ an example (after running a LogCabin server on localhost):
                       Alias: create, set.
       read <path>     Print value of file at <path>. Alias: get.
       remove <path>   Remove file at <path>, if any. Alias: rm, removefile.
-    
+
     Options:
       -c <addresses>, --cluster=<addresses>  Network addresses of the LogCabin
                                              servers, comma-separated
@@ -89,23 +89,23 @@ an example (after running a LogCabin server on localhost):
     $ logcabin dump /etc
     /etc/
     /etc/logcabin/
-    /etc/logcabin/now: 
+    /etc/logcabin/now:
         Fri Apr  3 14:35:55 PDT 2015
-    
+
     $ echo 1337 | logcabin write /etc/passwd
-    $ logcabin list /etc 
+    $ logcabin list /etc
     logcabin/
     passwd
     $ logcabin dump
     /
     /etc/
     /etc/logcabin/
-    /etc/logcabin/now: 
+    /etc/logcabin/now:
         Fri Apr  3 14:35:55 PDT 2015
-    
+
     /etc/passwd:
         1337
-    
+
     $ logcabin rmdir /etc/passwd
     terminate called after throwing an instance of 'LogCabin::Client::TypeException'
       what():  /etc/passwd is a file
@@ -179,8 +179,8 @@ thread](https://twitter.com/ongardie/status/584067985335193600) and [issue
 123](https://github.com/logcabin/logcabin/issues/123) for progress.
 I'll also be speaking about Raft and LogCabin at the upcoming [Sourcegraph
 Hacker
-Meetup](http://www.meetup.com/Sourcegraph-Hacker-Meetup/events/221199291/) on
+Meetup](https://www.meetup.com/Sourcegraph-Tech-Talks/events/221199291/) on
 April 15th and the [CoreOS Fest](https://coreos.com/fest/) on May 4th and 5th,
 both in San Francisco.
-Thanks to [Scale Computing](http://www.scalecomputing.com) for supporting
+Thanks to [Scale Computing](https://www.scalecomputing.com) for supporting
 this work.

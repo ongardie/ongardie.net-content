@@ -38,7 +38,7 @@ useful for administrative and debugging purposes. For example, it lets you
 change the debug log verbosity for a single server at runtime without shutting
 it down, or ask a server to take a snapshot, or ask a server not to take
 automated snapshots. We use that last feature at
-[Scale Computing](http://www.scalecomputing.com/) to stop servers from
+[Scale Computing](https://www.scalecomputing.com/) to stop servers from
 snapshotting after system-wide test failures, which improves our odds of
 finding meaningful Raft log entries with the history of commands when we go to
 triage the failure.
@@ -81,7 +81,7 @@ LogCabin in RAMCloud
 --------------------
 
 **Update:** I've added support for LogCabin v1.1 in the
-[RAMCloud](http://ramcloud.stanford.edu) storage system, where it can now be
+[RAMCloud](https://github.com/PlatformLab/RAMCloud/) storage system, where it can now be
 used for metadata storage and leader (coordinator) election. RAMCloud keeps all
 data in DRAM and offers 5 to 10 microsecond remote access times. It has a
 modular interface called
@@ -96,7 +96,7 @@ for LogCabin.
 Next for LogCabin
 -----------------
 
-[Scale Computing](http://www.scalecomputing.com) is testing their next release,
+[Scale Computing](https://www.scalecomputing.com) is testing their next release,
 which will include LogCabin v1.1, now, and they plan on shipping it to customer
 clusters soon. Today is my last day as a contractor for Scale, as I'm starting
 a full-time job elsewhere tomorrow (more on that in a future post). At least
@@ -106,8 +106,7 @@ patches as they come up. Scale plans to continue using LogCabin and will take a
 more active role in maintaining it and building out new features as needed.
 
 I'll take this opportunity to mention that Scale is looking for several more
-engineers, and they've recently closed an [$18 million round of
-funding](https://www.scalecomputing.com/press_releases/scale-computing-closes-18-million-funding-round/).
+engineers, and they've recently closed an $18 million round of funding.
 Feel free to contact me directly if you'd like to chat about what it's like at
 Scale, and I can put you in touch with the right people there.
 

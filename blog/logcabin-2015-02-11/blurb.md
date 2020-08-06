@@ -200,4 +200,4 @@ backlog](https://github.com/logcabin/logcabin/issues) next. First up is a
 [problem](https://github.com/logcabin/logcabin/issues/90) that Scale's
 regression tests found, where drastically changing the time on the leader of a
 LogCabin cluster will needlessly kill all of the clients. Thanks to [Scale
-Computing](http://www.scalecomputing.com) for supporting this work.
+Computing](https://www.scalecomputing.com) for supporting this work.

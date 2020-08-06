@@ -4,7 +4,7 @@ includes a C++ implementation of the
 [Raft consensus algorithm](https://raft.github.io). If you're new
 to these, I recently spoke about Raft and a little about LogCabin at the
 [Sourcegraph Hacker
-Meetup](http://www.meetup.com/Sourcegraph-Hacker-Meetup/events/221199291/) in
+Meetup](https://www.meetup.com/Sourcegraph-Hacker-Meetup/events/221199291/) in
 San Francisco; watch the [video](https://youtu.be/2dfSOFqOhOU) for a visual
 walk-through of how Raft works.
 
@@ -20,7 +20,7 @@ I initially developed LogCabin at Stanford University while co-designing the
 we used to put Raft into code, which in turn influenced the design of Raft and
 the way we described it. By the time I graduated, LogCabin had a fairly mature
 Raft implementation but needed more work around the edges. Since then, I've
-been working with [Scale Computing](http://www.scalecomputing.com/) to turn
+been working with [Scale Computing](https://www.scalecomputing.com/) to turn
 LogCabin into a production system. We've improved its usability, updated how it
 writes to disk, added a few features such as client-side timeouts, and
 discovered and fixed a few bugs (for more details, see the [series of blog
@@ -34,20 +34,25 @@ license.
 LogCabin 1.0 also has a logo. A serious project needs a logo, after all. It
 lets people know they can place their trust in LogCabin.
 
-<div style="border: 1px solid #ccc">
 <center>
-<blockquote class="twitter-tweet" lang="en"><p lang="tl" dir="ltr">The making of the new LogCabin logo. Analog to digital to analog to digital. <a href="http://t.co/eJXGyGMRRV">http://t.co/eJXGyGMRRV</a> <a href="http://t.co/m2HQtvYnoo">pic.twitter.com/m2HQtvYnoo</a></p>&mdash; Diego Ongaro (@ongardie) <a href="https://twitter.com/ongardie/status/586396192835153921">April 10, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote>
+<p>
+The making of the new LogCabin logo. Analog to digital to analog to digital.
+<a href="https://github.com/logcabin/logcabin">https://github.com/logcabin/logcabin</a>
+<img src="${VAR_URL_PREFIX}/blog/logcabin-1.0/logo.gif" style="max-width: calc(100% - 20px)" />
+</p>
+&mdash; Diego Ongaro (@ongardie)
+<a href="https://twitter.com/ongardie/status/586396192835153921">April 10, 2015</a>
+</blockquote>
 </center>
-</div>
 
 Included with 1.0
 -----------------
 
 At a high level, LogCabin looks similar to
-[Chubby](http://research.google.com/archive/chubby.html),
+[Chubby](https://research.google/pubs/pub27897/),
 [ZooKeeper](https://zookeeper.apache.org/), and
-[etcd](https://github.com/coreos/etcd). It's a network service providing a
+[etcd](https://github.com/etcd-io/etcd). It's a network service providing a
 small amount of consistent storage. You can set keys to values in a
 hierarchical tree, fetch keys, and list the keys in a particular "directory".
 It supports compare-and-swap style operations, such as set key *x* to value *y*

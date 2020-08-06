@@ -1,4 +1,4 @@
-<a href="http://www.debian.org/" alt="www.debian.org"><img style="float:right" src="${VAR_URL_PREFIX}/blog/squeeze/debian_logo.png" alt="Debian logo" /></a>
+<a href="https://www.debian.org/" alt="www.debian.org"><img style="float:right" src="${VAR_URL_PREFIX}/blog/squeeze/debian_logo.png" alt="Debian logo" /></a>
 
 <p>
 I've switched my laptop over from Debian Lenny (stable) to Squeeze (testing).
@@ -10,7 +10,7 @@ Python 2.6.
 <p>
 In case it helps anyone else, my laptop is a Lenovo Thinkpad T61 with an Intel
 graphics chip and wifi card. Much of what broke is related to
-<a href="http://en.wikipedia.org/wiki/Mode-setting#Linux">kernel mode-setting (KMS)</a>.
+<a href="https://en.wikipedia.org/wiki/Mode-setting#Linux">kernel mode-setting (KMS)</a>.
 Here's the list:
 </p>
 
@@ -20,13 +20,11 @@ no longer compatible. On Squeeze's kernel with this setting, the console
 framebuffer did not display anything. I think the <code>GRUB_GFXMODE</code>
 variable is supposed to replace it.</li>
 <li>X failed to start and failed to let me switch back to the consoles on
-Squeeze's kernel
-(<a href="http://packages.debian.org/squeeze/linux-image-2.6.32-trunk-amd64">linux-image-2.6.32-trunk-amd64</a> 2.6.32-5).
+Squeeze's kernel (2.6.32-5).
 I think you need an Intel graphics chip and 4GB of RAM to enjoy this bug (which
 seems at least related to FreeDesktop's
-<a href="http://bugs.freedesktop.org/show_bug.cgi?id=25510">Bug #25510</a>).
-If you're so lucky, the kernel in unstable fixes the problem for me
-(<a href="http://packages.debian.org/unstable/linux-image-2.6.32-2-amd64">linux-image-2.6.32-2-amd64</a> 2.6.32-8).</li>
+<a href="https://bugs.freedesktop.org/show_bug.cgi?id=25510">Bug #25510</a>).
+If you're so lucky, the kernel in unstable fixes the problem for me (2.6.32-8).</li>
 <li>I had a residual config file that apt did not purge at
 <code>/etc/<wbr />udev/<wbr />rules.d/<wbr />z60_xserver_xorg_<wbr />input_wacom.rules</code>
 that caused screenfuls of warnings early in the boot process.</li>

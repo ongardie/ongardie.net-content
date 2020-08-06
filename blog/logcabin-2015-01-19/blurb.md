@@ -234,7 +234,7 @@ Next
 Scale is in the middle of an office move that's making some of the development
 and test clusters unavailable, so it's probably a good time to work through
 some of the [issue backlog](https://github.com/logcabin/logcabin/issues) next.
-Thanks to [Scale Computing](http://www.scalecomputing.com) for supporting this
+Thanks to [Scale Computing](https://www.scalecomputing.com) for supporting this
 work. And congrats to Nate on his first two pull requests
 ([#79](https://github.com/logcabin/logcabin/pull/79) and
 [#81](https://github.com/logcabin/logcabin/pull/81)).

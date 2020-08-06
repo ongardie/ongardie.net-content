@@ -10,12 +10,12 @@ Motivation
 
 I've been dabbling in web development recently, and as part of that, I'm trying
 to access [LevelDB](https://github.com/google/leveldb) from
-[Node.js](http://nodejs.org/).
+[Node.js](https://nodejs.org/).
 
 LevelDB is a C++ library that provides a key-value interface to local storage,
 implemented as a [log-structured
 merge-tree](https://en.wikipedia.org/wiki/Log-structured_merge-tree). Its
-[API](https://cdn.rawgit.com/google/leveldb/master/doc/index.html) contains:
+[API](https://github.com/google/leveldb/blob/master/doc/index.md) contains:
 
 - Basic key-value operations: `get`, `put`, and `delete`.
 - Iterators, which can be used to return all keys within a particular range.
@@ -38,7 +38,7 @@ want transactions for things like adding a label to an item, while atomically
 adding a backreference to the item from the label.
 
 I should take a moment to say that most projects needing transactional
-databases should probably just use [PostgreSQL](http://www.postgresql.org) or
+databases should probably just use [PostgreSQL](https://www.postgresql.org) or
 [SQLite](https://sqlite.org), two excellent open source relational databases.
 Those are what I'd use if I had to actually get something done. This is a side
 project and a learning experience for me, so I'm intentionally exploring a path
@@ -60,7 +60,7 @@ LevelDB. Over time, LevelUP has evolved to have various backends, but I'm
 just interested in using LevelDB for now.
 
 LevelUP uses callbacks instead of
-[promises](http://www.html5rocks.com/en/tutorials/es6/promises/), which makes
+[promises](https://web.dev/promises/), which makes
 it a bit ugly to use directly. Fortunately,
 [level-promise](https://github.com/nathan7/level-promise/) wraps LevelUP to
 expose a promise-based API. It adapts LevelUP in an automated way, based on a
@@ -278,7 +278,7 @@ isolation allows. See
 by M. Cahill, U. Roehm, and A. Fekete
 ([acm](https://dl.acm.org/citation.cfm?id=1376690)
 [pdf](https://courses.cs.washington.edu/courses/cse444/08au/544M/READING-LIST/fekete-sigmod2008.pdf)
-[thesis](http://ses.library.usyd.edu.au/bitstream/2123/5353/1/michael-cahill-2009-thesis.pdf))
+[thesis](https://ses.library.usyd.edu.au/bitstream/2123/5353/1/michael-cahill-2009-thesis.pdf))
 for one approach. I discussed snapshot isolation above since it's simpler to
 implement and sufficient for many applications.
 
@@ -294,7 +294,7 @@ as a learning experience.
 I must be one of a very small group of people that
 want transactions on LevelDB in Node, and that suggests that maybe I'm doing it
 wrong. Maybe I shouldn't be using LevelDB in Node for something transactional.
-Maybe [RocksDB](http://rocksdb.org/) or another LevelDB fork has better
+Maybe [RocksDB](https://rocksdb.org/) or another LevelDB fork has better
 support. Maybe Node supports database servers better than database libraries
 due to its event-driven concurrency model. It's hard for me to tell, but I
 think what I'm trying to do is rational.

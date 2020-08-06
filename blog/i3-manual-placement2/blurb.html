@@ -39,10 +39,10 @@ keep the test environment minimal, clean, and easy to reset.
 </p>
 
 <p>
-I had used <a href="http://en.wikipedia.org/wiki/Xnest">Xnest</a> in the past,
+I had used <a href="https://packages.debian.org/unstable/xnest">Xnest</a> in the past,
 but I found that i3bar didn't display fonts for me under Xnest. I don't know
 what the problem was there, but I came across
-<a href="http://en.wikipedia.org/wiki/Xephyr">Xephyr</a>, a replacement for
+<a href="https://en.wikipedia.org/wiki/Xephyr">Xephyr</a>, a replacement for
 Xnest that supports modern X extensions. Fortunately, Xephyr can run i3 and
 i3bar properly. Xephyr allows the nested server to grab the keyboard (toggled
 with Ctrl+Shift), which is quite handy for window manager development.
@@ -61,7 +61,7 @@ Stapelberg has already accepted a couple of these minor patches.
 <p>
 To use <code>contrib/dump-asy.pl</code> with a nested X server, you need to
 help it find i3's IPC socket. It uses
-<a href="https://metacpan.org/module/AnyEvent::I3">AnyEvent::I3</a> internally,
+<a href="https://metacpan.org/pod/AnyEvent::I3">AnyEvent::I3</a> internally,
 whose default constructor finds the i3 running on your current
 <code>DISPLAY</code>. You don't want to launch the script with the
 <code>DISPLAY</code> set to the nested X server, since then it would launch

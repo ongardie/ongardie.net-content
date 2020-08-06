@@ -1,8 +1,8 @@
 <p>
-I needed an excuse to try <a href="http://mmassonnet.blogspot.com">Mike</a>'s
-<a href="http://git.xfce.org/bindings/xfce4-vala/">Vala bindings for Xfce</a>,
+I needed an excuse to try <a href="http://blog.m8t.in/">Mike</a>'s
+<a href="https://git.xfce.org/bindings/xfce4-vala/">Vala bindings for Xfce</a>,
 so I created a new little plugin for the panel, the
-<a href="http://goodies.xfce.org/projects/panel-plugins/xfce4-stopwatch-plugin">xfce4-stopwatch-plugin</a>.
+<a href="https://docs.xfce.org/panel-plugins/xfce4-stopwatch-plugin">xfce4-stopwatch-plugin</a>.
 </p>
 
 <p>
@@ -29,7 +29,7 @@ From their web site,
 </p>
 <blockquote>
 <p>
-<a href="http://live.gnome.org/Vala">Vala</a> is a new programming language
+<a href="https://wiki.gnome.org/Projects/Vala">Vala</a> is a new programming language
 that aims to bring modern programming language features to GNOME developers
 without imposing any additional runtime requirements and without using a
 different ABI compared to applications and libraries written in C.
@@ -38,7 +38,7 @@ different ABI compared to applications and libraries written in C.
 
 <p>
 Instead of having to write tons of
-<a href="http://library.gnome.org/devel/gobject/unstable/howto-gobject.html">boilerplate code</a>
+<a href="https://library.gnome.org/devel/gobject/unstable/howto-gobject.html">boilerplate code</a>
 to create new GObjects in C and for other common tasks in developing GTK-based
 applications, Vala builds these features into the language. The Vala code you
 write passes through the Vala compiler, which produces GObject-based C code.
@@ -63,7 +63,7 @@ that Vala and the Xfce bindings aren't mature yet:
 <ul>
 
 <li>
-I filed <a href="http://bugzilla.gnome.org/show_bug.cgi?id=587150">GNOME Bug 587150</a>,
+I filed <a href="https://bugzilla.gnome.org/show_bug.cgi?id=587150">GNOME Bug 587150</a>,
 a bug in Vala's POSIX bindings for the <code>time_t</code> type. Vala treats it
 as a GObject instead of an integer, making it unusable to pass around your
 program in many ways. This bug hasn't seen any attention yet, but I've worked
@@ -72,20 +72,19 @@ around it for Stopwatch by not using <code>time_t</code>.
 </li>
 
 <li>
-I <a href="http://git.xfce.org/bindings/xfce4-vala/commit/?id=f1695e8f95e9647db4989c968cf4768476272e0e">patched</a>
-a small bug in Xfce's Vala bindings for the
-<a href="http://www.xfce.org/documentation/4.6/api/libxfce4panel/XfceHVBox.html">XfceHVBox</a>
+I <a href="https://git.xfce.org/bindings/xfce4-vala/commit/?id=f1695e8f95e9647db4989c968cf4768476272e0e">patched</a>
+a small bug in Xfce's Vala bindings for the XfceHVBox
 widget. The Vala compiler was producing calls to <code>xfce_hv_box_new()</code>
 instead of <code>xfce_hvbox_new()</code>, which of course caused a problem when
 GCC tried to resolve the symbol.
 </li>
 
 <li>
-I also filed <a href="http://bugzilla.gnome.org/show_bug.cgi?id=589930">GNOME Bug 589930</a>,
+I also filed <a href="https://bugzilla.gnome.org/show_bug.cgi?id=589930">GNOME Bug 589930</a>,
 a bug in Vala's generated code for <code>sscanf</code>. It always added an
 extra NULL argument at the end of the arguments list. Jürg Billeter fixed this
 one quickly with
-<a href="http://git.gnome.org/cgit/vala/commit/?id=7d5a61e38664ceabfe6a903af38d057bdf831a4b">this commit</a>,
+<a href="https://gitlab.gnome.org/GNOME/vala/commit/7d5a61e38664ceabfe6a903af38d057bdf831a4b">this commit</a>,
 which made it into Vala 0.7.5.
 </li>
 
@@ -103,5 +102,5 @@ straight-forward.
 Stopwatch will probably see just one or two more releases before it's
 feature-complete. I'd also like to port the Places plugin to Vala at some
 point, but I'm waiting to see how volume management plays out once
-<a href="http://gezeiten.org/post/2009/06/Preview:-Browsing-SFTP-with-Thunar">ThunarVFS is gone</a>.
+<a href="https://web.archive.org/web/20131029170008/http://gezeiten.org/post/2009/06/Preview:-Browsing-SFTP-with-Thunar">ThunarVFS is gone</a>.
 </p>

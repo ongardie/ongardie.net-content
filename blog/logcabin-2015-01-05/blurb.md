@@ -12,9 +12,9 @@ Not Quite C++11
 ---------------
 
 C++11 specifies a bunch of new time-related classes, including
-[steady_clock](http://en.cppreference.com/w/cpp/chrono/steady_clock),
-[time_point](http://en.cppreference.com/w/cpp/chrono/time_point), and a
-[condition_variable](http://en.cppreference.com/w/cpp/thread/condition_variable/wait_until)
+[steady_clock](https://en.cppreference.com/w/cpp/chrono/steady_clock),
+[time_point](https://en.cppreference.com/w/cpp/chrono/time_point), and a
+[condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable/wait_until)
 that will stop waiting after a given timeout. Unfortunately, libstdc++ doesn't
 implement those very well until around version 4.9. This is a problem for
 LogCabin, which aims to run on all versions of gcc from 4.4 through 4.9 (the
@@ -86,7 +86,7 @@ resolution, and they can't be interrupted from this. Thus, there's no real way
 to cancel a DNS request once it's started, say upon a timeout, and it seems
 that the memory for the request must be kept valid through its completion. I
 now appreciate why libevent includes [its own DNS
-resolver](http://www.wangafu.net/~nickm/libevent-2.0/doxygen/html/dns_8h.html),
+resolver](https://libevent.org/doc/dns_8h.html),
 but I wasn't ready to go down that path. I've left this as [future
 work](https://github.com/logcabin/logcabin/issues/75). For now, DNS resolution
 will continue to be bound by the system timeout setting, not those specified by
@@ -100,12 +100,12 @@ Next
 I can't say for certain what's coming next. One idea is to start working on
 administrative tools to introspect the LogCabin state and/or extract metrics
 from the LogCabin servers. We'll see. Thanks to [Scale
-Computing](http://www.scalecomputing.com) for supporting this work.
+Computing](https://www.scalecomputing.com) for supporting this work.
 
 ----
 
 1. <a id="logcabin-2015-01-05-footnote-1"></a>Phil White warns that two time
 readings with nanosecond granularity may still return the same value on a
 virtual machine. See [KVM timekeeping
-docs](http://www.mjmwired.net/kernel/Documentation/kvm/timekeeping.txt),
+docs](https://www.kernel.org/doc/html/latest/virt/kvm/timekeeping.html#virtualization-problems),
 section 4, for related reading.

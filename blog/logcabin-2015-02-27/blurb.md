@@ -150,5 +150,5 @@ Next
 
 I'm not sure what's next, but I'll keep working on the [issue
 backlog](https://github.com/logcabin/logcabin/issues) unless something new pops
-up. Thanks to [Scale Computing](http://www.scalecomputing.com) for supporting
+up. Thanks to [Scale Computing](https://www.scalecomputing.com) for supporting
 this work.

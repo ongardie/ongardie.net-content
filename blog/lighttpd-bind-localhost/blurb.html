@@ -1,7 +1,7 @@
 <img style="float:left" src="${VAR_URL_PREFIX}/blog/lighttpd-bind-localhost/lighttpd_logo.png" alt="lighttpd logo" />
 
 <p>
-I installed the web server <a href="http://www.lighttpd.net">lighttpd</a>
+I installed the web server <a href="https://www.lighttpd.net">lighttpd</a>
 on my laptop to test some configuration settings. As I didn't want to expose
 the server on the network, I uncommented
 <code>server.bind = "localhost"</code> from
@@ -40,7 +40,7 @@ include_shell "/usr/share/lighttpd/use-ipv6.pl"
 
 <h2>Other Reports of This Issue</h2>
 <p>
-A <a href="http://forum.lighttpd.net/topic/64647">couple reports</a> of the
+A couple reports of the
 same problem can be found on the old lighttpd forums, but no resolution was
 reached. Unfortunately, I can't reply there because those forums are now
 locked, and historical threads were not copied to lighttpd's new forums. The
@@ -49,14 +49,14 @@ identify the version.
 </p>
 
 <p>
-A <a href="http://lists.debian.org/debian-user-spanish/2009/03/msg00751.html">post</a>
+A <a href="https://lists.debian.org/debian-user-spanish/2009/03/msg00751.html">post</a>
 on the debian-user-spanish list reports the same problem on Debian Lenny but
 received no replies.
 </p>
 
 <p>
 That mailing list post does point to
-<a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=489063">Debian bug 489063</a>
+<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=489063">Debian bug 489063</a>
 (which doesn't come up on Google when you search for the error message). There,
 Pierre Habouzit, one of lighttpd's maintainers on Debian, suggests using
 <code>server.bind = "::1"</code> instead of <code>server.bind = "localhost"</code>

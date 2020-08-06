@@ -1,7 +1,7 @@
 This is the first in a series of blog posts detailing the ongoing development
 of [LogCabin](https://github.com/logcabin/logcabin). This first entry catches
 up on the developments from when I started working with [Scale
-Computing](http://www.scalecomputing.com) in November, so it's longer than most
+Computing](https://www.scalecomputing.com) in November, so it's longer than most
 of the future updates will be.
 
 The theme of this entry is getting started in a new environment. Up until now,
@@ -109,13 +109,13 @@ Travis CI
 
 I also set up [Travis CI](https://travis-ci.org/logcabin/logcabin) to do
 automated builds for LogCabin. This started with wanting the code-level
-documentation (produced by [Doxygen](http://doxygen.org)) to be available on a
+documentation (produced by [Doxygen](https://www.doxygen.nl/) to be available on a
 web server. It's a simple idea, but the documentation changes as the code
 changes, so static hosting wouldn't quite work. On each commit, Travis CI will
 now check out the new version of the code, build it, run the unit tests, and
 build the documentation. Then, it'll push the docs to a [GitHub static
 page](https://github.com/logcabin/logcabin.github.io), which GitHub then hosts
-at [logcabin.github.io](https://logcabin.github.io). 
+at [logcabin.github.io](https://logcabin.github.io).
 
 Travis CI runs these automated builds on fairly puny and/or overloaded VMs. I'm
 not blaming them (it's a free service), but this made some of the unit tests
@@ -133,4 +133,4 @@ Next time I'll discuss ongoing work to [add timeouts to LogCabin's client
 library](https://github.com/logcabin/logcabin/issues/69), including a battle
 against libstdc++ 4.4's [broken support for clocks and
 time](https://github.com/logcabin/logcabin/issues/24). Thanks to [Scale
-Computing](http://www.scalecomputing.com) for supporting this work.
+Computing](https://www.scalecomputing.com) for supporting this work.

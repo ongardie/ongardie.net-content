@@ -3,8 +3,9 @@
 Well, I spent the last five years getting my Ph.D. in Stanford's Computer
 Science department. I won't do that justice here, but I'll fill in the story
 briefly so that subsequent posts make sense. I was part of
-[Professor John Ousterhout](http://www.stanford.edu/~ouster/)'s group,
-which is primarily focused on [RAMCloud](http://ramcloud.stanford.edu),
+[Professor John Ousterhout](https://www.stanford.edu/~ouster/)'s group,
+which is primarily focused on
+[RAMCloud](https://web.stanford.edu/~ouster/cgi-bin/projects.php#ramcloud),
 a large-scale in-memory distributed storage system.
 
 ---
@@ -53,7 +54,7 @@ Now that I've graduated, I plan to continue to stay involved with Raft and help
 support the Raft community where I can. I've recently
 [announced](https://groups.google.com/d/msg/raft-dev/Dbb2TB0dgSU/fEtmYOXi2IIJ)
 my plans to continue developing LogCabin with support from
-[Scale Computing](http://www.scalecomputing.com/), and I'm excited to see
+[Scale Computing](https://www.scalecomputing.com/), and I'm excited to see
 LogCabin mature into a stable and production-quality system. I plan to post
 articles about this development here on a regular basis
 ([RSS](${URL_PREFIX}/blog/rss.xml)).
