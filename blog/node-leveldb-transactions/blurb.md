@@ -10,7 +10,7 @@ Motivation
 
 I've been dabbling in web development recently, and as part of that, I'm trying
 to access [LevelDB](https://github.com/google/leveldb) from
-[Node.js](https://nodejs.org/).
+[Node.js](https://nodejs.org/en/).
 
 LevelDB is a C++ library that provides a key-value interface to local storage,
 implemented as a [log-structured
@@ -39,7 +39,7 @@ adding a backreference to the item from the label.
 
 I should take a moment to say that most projects needing transactional
 databases should probably just use [PostgreSQL](https://www.postgresql.org) or
-[SQLite](https://sqlite.org), two excellent open source relational databases.
+[SQLite](https://sqlite.org/index.html), two excellent open source relational databases.
 Those are what I'd use if I had to actually get something done. This is a side
 project and a learning experience for me, so I'm intentionally exploring a path
 less traveled.
@@ -53,9 +53,9 @@ figuring out which libraries to use. I'll summarize what I found for LevelDB,
 in hopes that some of you will have an easier time getting oriented.
 
 To access LevelDB, I started out with the
-[LevelUP](https://github.com/rvagg/node-levelup) library. LevelUP is written in
+[LevelUP](https://github.com/Level/levelup) library. LevelUP is written in
 JavaScript and relies on the C++
-[LevelDOWN](https://github.com/rvagg/node-leveldown) library to call into
+[LevelDOWN](https://github.com/Level/leveldown) library to call into
 LevelDB. Over time, LevelUP has evolved to have various backends, but I'm
 just interested in using LevelDB for now.
 
@@ -70,9 +70,9 @@ description of the API from
 None of these libraries currently implements transactions. When I started this
 project, LevelDOWN did not expose snapshots in the API either, which would be
 useful for implementing transactions.
-[LevelUP issue #138](https://github.com/rvagg/node-levelup/issues/138) contains
+[LevelUP community issue #47](https://github.com/Level/community/issues/47) contains
 the relevant discussion for exposing snapshots, and I've started a patch to add
-them in [LevelDown PR #152](https://github.com/rvagg/node-leveldown/pull/152).
+them in [LevelDown PR #152](https://github.com/Level/leveldown/pull/152).
 
 
 level-transaction
@@ -107,7 +107,7 @@ active transaction.
 To execute a `get` operation, level-transaction:
 
 1. Waits until the key being read is not in `txKeys`. By wait, I mean spin with
-[`setImmediate()`](https://developer.mozilla.org/en-US/docs/Web/API/Window.setImmediate)
+[`setImmediate()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate)
 (JavaScript uses a single-threaded run-to-completion [event
 loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop) with
 asynchronous I/O for concurrency).
@@ -156,7 +156,7 @@ A Path Forward for LevelDB Transactions in Node.js
 --------------------------------------------------
 
 If we can get snapshots exposed in the LevelDOWN API
-([PR #152](https://github.com/rvagg/node-leveldown/pull/152)), then we'll have
+([PR #152](https://github.com/Level/leveldown/pull/152)), then we'll have
 both atomic updates and snapshot primitives available from Node.js. These lend
 themselves well to implementing transactions with [snapshot
 isolation](https://en.wikipedia.org/wiki/Snapshot_isolation).
@@ -276,9 +276,9 @@ anomalies](https://en.wikipedia.org/wiki/Snapshot_isolation), which snapshot
 isolation allows. See
 "Serializable Isolation for Snapshot Databases"
 by M. Cahill, U. Roehm, and A. Fekete
-([acm](https://dl.acm.org/citation.cfm?id=1376690)
+([acm](https://dl.acm.org/doi/10.1145/1376616.1376690)
 [pdf](https://courses.cs.washington.edu/courses/cse444/08au/544M/READING-LIST/fekete-sigmod2008.pdf)
-[thesis](https://ses.library.usyd.edu.au/bitstream/2123/5353/1/michael-cahill-2009-thesis.pdf))
+[thesis](https://ses.library.usyd.edu.au/bitstream/handle/2123/5353/michael-cahill-2009-thesis.pdf;jsessionid=751DF91C40440FA7F7ADDA484537CDF7?sequence=1))
 for one approach. I discussed snapshot isolation above since it's simpler to
 implement and sufficient for many applications.
 

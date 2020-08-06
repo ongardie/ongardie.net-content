@@ -109,7 +109,7 @@ Travis CI
 
 I also set up [Travis CI](https://travis-ci.org/logcabin/logcabin) to do
 automated builds for LogCabin. This started with wanting the code-level
-documentation (produced by [Doxygen](https://www.doxygen.nl/) to be available on a
+documentation (produced by [Doxygen](https://www.doxygen.nl/index.html) to be available on a
 web server. It's a simple idea, but the documentation changes as the code
 changes, so static hosting wouldn't quite work. On each commit, Travis CI will
 now check out the new version of the code, build it, run the unit tests, and
@@ -123,7 +123,7 @@ fail intermittently. Unfortunately, a few of the unit tests are just
 fundamentally sensitive to timing, like making sure that a condition variable
 waits for about the right amount of time. I renamed such tests to include
 "TimingSensitive" in the name, and, using a [gtest
-filter](https://code.google.com/p/googletest/wiki/AdvancedGuide#Running_a_Subset_of_the_Tests),
+filter](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests),
 Travis CI will no longer fail the build for such tests.
 
 Next

@@ -4,14 +4,14 @@ includes a C++ implementation of the
 [Raft consensus algorithm](https://raft.github.io). If you're new
 to these, I recently spoke about Raft and a little about LogCabin at the
 [Sourcegraph Hacker
-Meetup](https://www.meetup.com/Sourcegraph-Hacker-Meetup/events/221199291/) in
-San Francisco; watch the [video](https://youtu.be/2dfSOFqOhOU) for a visual
+Meetup](https://www.meetup.com/Sourcegraph-Tech-Talks/events/221199291/) in
+San Francisco; watch the [video](https://www.youtube.com/watch?v=2dfSOFqOhOU) for a visual
 walk-through of how Raft works.
 
 ---
 
 <center>
-[![Sourcegraph talk](${VAR_URL_PREFIX}/blog/logcabin-1.0/sourcegraph.jpg)](https://youtu.be/2dfSOFqOhOU)
+[![Sourcegraph talk](${VAR_URL_PREFIX}/blog/logcabin-1.0/sourcegraph.jpg)](https://www.youtube.com/watch?v=2dfSOFqOhOU)
 </center>
 
 I initially developed LogCabin at Stanford University while co-designing the

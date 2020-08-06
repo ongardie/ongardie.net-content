@@ -40,7 +40,7 @@ many different languages, and it's also been taught in a few distributed
 systems courses already.
 
 Early on in RAMCloud's history, in April 2010, we held the RAMCloud
-[Design Review](https://ramcloud.atlassian.net/wiki/display/RAM/Design+Review):
+[Design Review](https://ramcloud.atlassian.net/wiki/spaces/RAM/pages/6848646/Design+Review):
 a group of friendly people from academia and industry came over to
 listen to our ideas for RAMCloud and give us feedback. As part of this
 feedback, we were advised to use [ZooKeeper](https://zookeeper.apache.org/) for
@@ -52,7 +52,7 @@ important problem is the right thing, especially in academia.
 
 Now that I've graduated, I plan to continue to stay involved with Raft and help
 support the Raft community where I can. I've recently
-[announced](https://groups.google.com/d/msg/raft-dev/Dbb2TB0dgSU/fEtmYOXi2IIJ)
+[announced](https://groups.google.com/forum/#!msg/raft-dev/Dbb2TB0dgSU/fEtmYOXi2IIJ)
 my plans to continue developing LogCabin with support from
 [Scale Computing](https://www.scalecomputing.com/), and I'm excited to see
 LogCabin mature into a stable and production-quality system. I plan to post
