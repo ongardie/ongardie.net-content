@@ -56,4 +56,4 @@ my plans to continue developing LogCabin with support from
 [Scale Computing](http://www.scalecomputing.com/), and I'm excited to see
 LogCabin mature into a stable and production-quality system. I plan to post
 articles about this development here on a regular basis
-([RSS](${URL_PREFIX}/blog/+logcabin/rss.xml)).
+([RSS](${URL_PREFIX}/blog/rss.xml)).
