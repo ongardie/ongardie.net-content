@@ -85,21 +85,6 @@ div#menu .home a {
   padding: 0;
 }
 
-/* Trail */
-
-@media (max-width: 749px) {
-
-#trail {
-  display: none;
-}
-
-}
-
-#trail {
-  margin-left: 15px;
-  margin-top: 2px;
-}
-
 /* Footer */
 
 #footer {

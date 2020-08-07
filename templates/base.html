@@ -20,21 +20,6 @@
       ${PAGE_TITLE}
     </h1>
 
-    <%doc>
-    <% colors = ['dddddd', 'aaaaaa', '888888', '666666', '222222'] %>
-    <div id="trail">
-      <span style="color: black;">Page Trail:</span>
-      [[
-      % for i, page in zip(range(len(trail)), trail):
-        <a style="color: #${colors[i]}" href="${page.url}">${page.title}</a>
-        % if i != len(trail) - 1:
-          &gt;
-        % endif
-      % endfor
-      ]]
-    </div>
-    </%doc>
-
     <div id="menu">
       <ul>
         <li class="home"><a href="${URL_PREFIX}/">ongardie.net</a></li>
