@@ -32,11 +32,9 @@ div#menu ul li {
 div#menu .home {
   font-size: 120%;
   letter-spacing: 1px;
-}
-
-div#menu .home a {
   border-bottom: 2px solid #c0c0c0;
   color: #505050;
+  cursor: default;
 }
 
 div#menu .home a:hover {
