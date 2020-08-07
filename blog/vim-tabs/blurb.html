@@ -46,8 +46,37 @@ navigate them with only the keyboard. You can use
 Placing the tab number on its label solves this problem.
 </p>
 <img src="${VAR_URL_PREFIX}/blog/vim-tabs/vim-tab-labels.png" alt="Vim tab labels" />
+
 <p>
-You can see how I set a custom tab label in
-<a href="https://ongardie.net/git/vim/commit/?id=ae39cc8678860376a07cd3e797f78135cb134fa3">this</a>
-commit to my Vim configuration repository.
+Here's how I set a custom tab label:
 </p>
+<pre>
+function! GuiTabLabel()
+  " buffer_number[+] buffer_name [(number_windows)]
+
+  " Add buffer number
+  let label = v:lnum
+
+  " Add '+' if one of the buffers in the tab page is modified
+  let bufnrlist = tabpagebuflist(v:lnum)
+  for bufnr in bufnrlist
+    if getbufvar(bufnr, "&modified")
+      let label .= '+'
+      break
+    endif
+  endfor
+
+  " Append the buffer name
+  let label .= ' ' . bufname(bufnrlist[tabpagewinnr(v:lnum) - 1])
+
+  " Append the number of windows in the tab page if more than one
+  let wincount = tabpagewinnr(v:lnum, '$')
+  if wincount > 1
+    let label .= ' (' . wincount . ')'
+  endif
+
+  return label
+endfunction
+
+set guitablabel=%{GuiTabLabel()}
+</pre>
