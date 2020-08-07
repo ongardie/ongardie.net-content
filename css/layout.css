@@ -94,7 +94,7 @@ div#menu .home a {
 /* Content */
 
 #content {
-  max-width: 560px;
+  max-width: 620px;
 }
 
 @media (min-width: 400px) {
