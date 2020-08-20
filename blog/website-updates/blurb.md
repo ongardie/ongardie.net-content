@@ -28,5 +28,5 @@ suited to browser history today.
 On a related note, I used to host the code for this website with a local
 [cgit](https://git.zx2c4.com/cgit/about/) instance. I've turned that off and
 moved the code to a [GitHub repo](https://github.com/ongardie/website-gen)
-instead. If you're curious, You can look through the history of that repo to see
+instead. If you're curious, you can look through the history of that repo to see
 what's changed.
