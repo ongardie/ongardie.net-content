@@ -1,98 +1,105 @@
 <p>
-I've been using
-<a href="https://en.wikipedia.org/wiki/Tiling_window_manager">tiling window managers</a>
-for the past couple of years. I started with
-<a href="https://en.wikipedia.org/wiki/Awesome_(window_manager)">awesome</a>,
-then
-<a href="https://notionwm.net/">Notion</a> (a fork of
-<a href="https://en.wikipedia.org/wiki/Ion_(window_manager)">Ion</a>; Ion is
-no longer maintained),
-and now I'm in the process of moving to
-<a href="https://en.wikipedia.org/wiki/I3_(window_manager)">i3</a>.
-For those of you that aren't familiar with it, the screenshots all look the
-same. They all behave differently, though, and I guess you just have to find
-one that fits your mental model.
+  I've been using
+  <a href="https://en.wikipedia.org/wiki/Tiling_window_manager"
+    >tiling window managers</a
+  >
+  for the past couple of years. I started with
+  <a href="https://en.wikipedia.org/wiki/Awesome_(window_manager)">awesome</a>,
+  then <a href="https://notionwm.net/">Notion</a> (a fork of
+  <a href="https://en.wikipedia.org/wiki/Ion_(window_manager)">Ion</a>; Ion is
+  no longer maintained), and now I'm in the process of moving to
+  <a href="https://en.wikipedia.org/wiki/I3_(window_manager)">i3</a>. For those
+  of you that aren't familiar with it, the screenshots all look the same. They
+  all behave differently, though, and I guess you just have to find one that
+  fits your mental model.
 </p>
 
 <p>
-When you open a new window in most tiling window managers, your existing
-windows get rearranged or resized to make room for it. This is kind of one main
-idea, actually, and it works reasonably well when opening your second or third
-window. Beyond two or three, depending on the screen size and applications, it
-starts to suck.
+  When you open a new window in most tiling window managers, your existing
+  windows get rearranged or resized to make room for it. This is kind of one
+  main idea, actually, and it works reasonably well when opening your second or
+  third window. Beyond two or three, depending on the screen size and
+  applications, it starts to suck.
 </p>
 
 <hr />
 
 <p>
-Awesome is a
-<a href="https://en.wikipedia.org/wiki/Dynamic_window_manager">dynamic window manager</a>,
-meaning it assigns each workspace a layout, and that layout determines how
-windows are placed as they are opened. A common layout involves a spiral of
-ever-shrinking window sizes. The first window opened will occupy the entire
-screen. The second window will take half the real estate from the first. Then
-the third window will take half the real estate from the second, etc.
+  Awesome is a
+  <a href="https://en.wikipedia.org/wiki/Dynamic_window_manager"
+    >dynamic window manager</a
+  >, meaning it assigns each workspace a layout, and that layout determines how
+  windows are placed as they are opened. A common layout involves a spiral of
+  ever-shrinking window sizes. The first window opened will occupy the entire
+  screen. The second window will take half the real estate from the first. Then
+  the third window will take half the real estate from the second, etc.
 </p>
 
 <p>
-The net result of this dynamic approach, however, is that window placement is
-unstable. When you launch a window (in a large enough tile to see the
-contents), your other windows get displaced and resized to make room.
-This is the single reason why I switched from awesome to Notion.
+  The net result of this dynamic approach, however, is that window placement is
+  unstable. When you launch a window (in a large enough tile to see the
+  contents), your other windows get displaced and resized to make room. This is
+  the single reason why I switched from awesome to Notion.
 </p>
 
 <p>
-Notion's approach is very simple but powerful. Every tile is actually a
-tabbed set of windows. If you launch a new window, it creates a new tab
-in the same container. You get three commands for managing windows:
-split a container vertically, split a container horizontally, and
-unsplit. Split containers can be nested arbitrarily.
+  Notion's approach is very simple but powerful. Every tile is actually a
+  tabbed set of windows. If you launch a new window, it creates a new tab in
+  the same container. You get three commands for managing windows: split a
+  container vertically, split a container horizontally, and unsplit. Split
+  containers can be nested arbitrarily.
 </p>
 
 <p>
-I really like Notion's basic approach. I just had a few minor gripes with
-Notion as a whole. Looking over my list, I don't think any are show-stoppers,
-and most of them I could probably fix with some configuration or minor hacks.
+  I really like Notion's basic approach. I just had a few minor gripes with
+  Notion as a whole. Looking over my list, I don't think any are show-stoppers,
+  and most of them I could probably fix with some configuration or minor hacks.
 </p>
 
 <p>
-But I happened to come across i3, and I was impressed by the way they're
-managing their project. I'd recommend checking out their <a
-href="https://i3wm.org/screenshots/">videos</a>, including the lead developer's
-hour-long Google tech talk. Rare for these sorts of projects, it aims for
-well-documented code, has automated tests, and has an active community.
+  But I happened to come across i3, and I was impressed by the way they're
+  managing their project. I'd recommend checking out their
+  <a href="https://i3wm.org/screenshots/">videos</a>, including the lead
+  developer's hour-long Google tech talk. Rare for these sorts of projects, it
+  aims for well-documented code, has automated tests, and has an active
+  community.
 </p>
 
 <p>
-I was hoping i3 would work like Notion out of the box, but unfortunately their
-model is a bit different. i3 and Notion support the same layouts in principle:
-i3 splits workspaces into nested containers, where each container is either
-tabbed, split horizontally, or split vertically. However, i3 behaves differently
-when placing a new window. If you're in a tabbed container, yes, it creates a
-new tab. But if you're in a split container, it creates a new split, resizing
-your existing windows in that container. That's not what I want.
+  I was hoping i3 would work like Notion out of the box, but unfortunately
+  their model is a bit different. i3 and Notion support the same layouts in
+  principle: i3 splits workspaces into nested containers, where each container
+  is either tabbed, split horizontally, or split vertically. However, i3
+  behaves differently when placing a new window. If you're in a tabbed
+  container, yes, it creates a new tab. But if you're in a split container, it
+  creates a new split, resizing your existing windows in that container. That's
+  not what I want.
 </p>
 
 <p>
-I'm not seeing any options to control this behavior, so it looks like I'm going
-to have to get my hands dirty and hack it up myself. Given their container
-model, it shouldn't be too hard in principle. I guess what I want is:
-if you're opening a window as part of a tabbed container, open a new tab (no
-change from before). If you're opening a window as part of a split container,
-put the current window in a tabbed subcontainer, and create the new window as a
-new tab there. Maybe that's it?
+  I'm not seeing any options to control this behavior, so it looks like I'm
+  going to have to get my hands dirty and hack it up myself. Given their
+  container model, it shouldn't be too hard in principle. I guess what I want
+  is: if you're opening a window as part of a tabbed container, open a new tab
+  (no change from before). If you're opening a window as part of a split
+  container, put the current window in a tabbed subcontainer, and create the
+  new window as a new tab there. Maybe that's it?
 </p>
 
 <p>
-So I don't lose my place, the
-<a href="https://build.i3wm.org/docs/hacking-howto.html#_manage_windows_src_main_c_manage_window_and_reparent_window">hacking howto</a>
-has a couple of sections that seem relevant:
-"8. Manage windows (src/main.c, manage_window() and reparent_window())"
-and "9. What happens when an application is started?".
-More on this later once I've jumped into the code...
+  So I don't lose my place, the
+  <a
+    href="https://build.i3wm.org/docs/hacking-howto.html#_manage_windows_src_main_c_manage_window_and_reparent_window"
+    >hacking howto</a
+  >
+  has a couple of sections that seem relevant: "8. Manage windows (src/main.c,
+  manage_window() and reparent_window())" and "9. What happens when an
+  application is started?". More on this later once I've jumped into the
+  code...
 </p>
 
 <p>
-<strong>Update:</strong> <a href="${URL_PREFIX}/blog/i3-manual-placement2">part 2</a>
-explains how I set up my test environment.
+  <strong>Update:</strong>
+  <a href="${URL_PREFIX}/blog/i3-manual-placement2">part 2</a>
+  explains how I set up my test environment.
 </p>

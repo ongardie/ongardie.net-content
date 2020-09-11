@@ -1,0 +1,8 @@
+# The Prettier formatter doesn't know about Mako templates, so files that use
+# Mako '%' syntax need be excluded.
+
+/blurbs/books/blurb.html
+/blurbs/movies/blurb.html
+/blurbs/pubs/blurb.html
+/templates/blog/index.html
+/templates/blog/one.html

@@ -44,8 +44,7 @@ def indexiter(iterable):
 
 The `enumerate` function has been available since Python v2.3. Read about the
 optional `start` parameter in the
-[docs](https://docs.python.org/3/library/functions.html#enumerate)
-- it looks useful, but it's new in Python 2.6.
+[docs](https://docs.python.org/3/library/functions.html#enumerate).
 
 ---
 

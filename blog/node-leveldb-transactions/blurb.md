@@ -5,8 +5,7 @@ build transactions with snapshot isolation on top without much trouble.
 
 ---
 
-Motivation
-----------
+## Motivation
 
 I've been dabbling in web development recently, and as part of that, I'm trying
 to access [LevelDB](https://github.com/google/leveldb) from
@@ -44,9 +43,7 @@ Those are what I'd use if I had to actually get something done. This is a side
 project and a learning experience for me, so I'm intentionally exploring a path
 less traveled.
 
-
-Node's LevelDB Libraries
-------------------------
+## Node's LevelDB Libraries
 
 One of the hardest things when starting out with JavaScript in general is
 figuring out which libraries to use. I'll summarize what I found for LevelDB,
@@ -74,9 +71,7 @@ useful for implementing transactions.
 the relevant discussion for exposing snapshots, and I've started a patch to add
 them in [LevelDown PR #152](https://github.com/Level/leveldown/pull/152).
 
-
-level-transaction
------------------
+## level-transaction
 
 As I was writing this post, I came across a project called
 [level-transaction](https://github.com/eugeneware/level-transaction), which
@@ -107,10 +102,10 @@ active transaction.
 To execute a `get` operation, level-transaction:
 
 1. Waits until the key being read is not in `txKeys`. By wait, I mean spin with
-[`setImmediate()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate)
-(JavaScript uses a single-threaded run-to-completion [event
-loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop) with
-asynchronous I/O for concurrency).
+   [`setImmediate()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/setImmediate)
+   (JavaScript uses a single-threaded run-to-completion [event
+   loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop) with
+   asynchronous I/O for concurrency).
 2. Then executes a `get` against the current database.
 
 To execute update operations (`put`, `delete`, and batches), level-transaction:
@@ -118,15 +113,15 @@ To execute update operations (`put`, `delete`, and batches), level-transaction:
 1. Waits until the key is not in `txKeys`.
 2. Adds the key to `txKeys`.
 3. Fetches the existing value of the key, and uses this to store "rollback"
-information, which can be used to restore the key to its previous version
-later, if needed.
+   information, which can be used to restore the key to its previous version
+   later, if needed.
 4. Executes the `put`, `delete`, or batch against the current database. Returns
-if there's an error.
+   if there's an error.
 5. Sets a timer to later execute the rollback operation and clear `txKeys`
-entirely.
+   entirely.
 6. Returns the application a commit function, which will remove the rollback
-timer and clear `txKeys` entirely, and an abort function, which will
-execute the rollback operation and clear `txKeys` entirely.
+   timer and clear `txKeys` entirely, and an abort function, which will
+   execute the rollback operation and clear `txKeys` entirely.
 
 I've written the above description of update operations in terms of one key for
 simplicity, but batch operations do contain multiple keys.
@@ -151,9 +146,7 @@ already, given its disclaimer, and I'm not trying to pick on them. My point is
 that transactions for LevelDB in Node.js are not a solved problem, and the
 current level-transaction approach is probably not the right one.
 
-
-A Path Forward for LevelDB Transactions in Node.js
---------------------------------------------------
+## A Path Forward for LevelDB Transactions in Node.js
 
 If we can get snapshots exposed in the LevelDOWN API
 ([PR #152](https://github.com/Level/leveldown/pull/152)), then we'll have
@@ -196,7 +189,6 @@ transaction, `key1` had the value `A`:
     ...
     commit
 
-
 This behavior should be straightforward to implement in txlib by consulting the
 buffered updates on each `get` and iterator operation, with those taking
 precedence over the results from the database snapshot.
@@ -226,7 +218,7 @@ transaction from blindly overwriting the other's updates. For example:
     commit
                             commit
 
-If we suppose every account started with $100 and transaction 2 commits after
+If we suppose every account started with \$100 and transaction 2 commits after
 transaction 1, we'd end up with `account1` having $50, `account2` and
 `account3` having $150 each, and some accountant yelling at us about the $50
 discrepancy. Instead, what we'd like is for one of these transactions to abort
@@ -252,8 +244,7 @@ When a `put` or `delete` occurred within a transaction, txlib would:
 - Otherwise, set `lastUpdate[key]` to the current transaction.
 - Buffer up the update to be issued later in an atomic batch.
 
-In the above example, transaction 2 would be aborted as soon as it called `put
-account1 bal1`, since transaction 1 would have already touched the key in the
+In the above example, transaction 2 would be aborted as soon as it called `put account1 bal1`, since transaction 1 would have already touched the key in the
 `lastUpdate` map. This isn't quite optimal: if transaction 1 happened to abort,
 transaction 2 would have aborted unnecessarily. However, this is probably
 uncommon, and the simplicity of the approach probably outweighs any performance
@@ -282,9 +273,7 @@ by M. Cahill, U. Roehm, and A. Fekete
 for one approach. I discussed snapshot isolation above since it's simpler to
 implement and sufficient for many applications.
 
-
-Conclusion
-----------
+## Conclusion
 
 To reiterate, you should probably just use PostgreSQL or SQLite. This is what
 happens when a systems PhD dabbles in web development. I want to have

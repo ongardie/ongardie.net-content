@@ -15,8 +15,7 @@ you to install on your systems, too.
 
 ---
 
-Getting Started
----------------
+## Getting Started
 
 At Scale, we've been working to integrate LogCabin into Scribe, the software
 that runs their private cloud products. We needed LogCabin to be installable
@@ -29,9 +28,9 @@ merge](https://github.com/logcabin/logcabin/issues/74) into the upstream repo.
 
 On the client side of things, I
 [moved](https://github.com/logcabin/logcabin/commit/f8f3b7ec) the `Client.h`
-header that clients need to include. Client code used to `#include
-<Client/Client.h>`, which is fairly confusing; now it's `#include
-<LogCabin/Client.h>`.
+header that clients need to include. Client code used to
+`#include <Client/Client.h>`, which is fairly confusing; now it's
+`#include <LogCabin/Client.h>`.
 
 I also started removing the need for DNS in clients. Instead of requiring a DNS
 name that resolves to multiple addresses, the `Cluster` constructor [now
@@ -43,8 +42,7 @@ this, and finding a way for dynamic membership changes to work without DNS
 (maybe we should expose a way for running clients to reset the list of hosts?).
 For now, Scribe still uses a DNS hostname set up by `/etc/hosts`.
 
-Client API
-----------
+## Client API
 
 As I was adding the first lines of code to write to LogCabin from Scribe, I
 noticed that LogCabin had no way to do a [conditional
@@ -56,8 +54,7 @@ state machine with 0-length values but also files that don't exist at all. In
 the future, we may want to extend the condition system to include matching on
 hashes of files for large files, or maybe switch to using version numbers.
 
-Internal Improvements
----------------------
+## Internal Improvements
 
 I also fixed two crashes in the RPC system. One was a [race
 condition](https://github.com/logcabin/logcabin/issues/70), in which a socket
@@ -102,8 +99,7 @@ A couple additional improvements to the client library's internals:
   bandwidth. They're now
   [rate-limited](https://github.com/logcabin/logcabin/commit/37a53ec9).
 
-Travis CI
----------
+## Travis CI
 
 [![Build Status](https://travis-ci.org/logcabin/logcabin.svg?branch=master)](https://travis-ci.org/logcabin/logcabin)
 
@@ -126,8 +122,7 @@ waits for about the right amount of time. I renamed such tests to include
 filter](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests),
 Travis CI will no longer fail the build for such tests.
 
-Next
-----
+## Next
 
 Next time I'll discuss ongoing work to [add timeouts to LogCabin's client
 library](https://github.com/logcabin/logcabin/issues/69), including a battle

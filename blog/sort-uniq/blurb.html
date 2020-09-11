@@ -1,16 +1,19 @@
-<p>
-If you want to get rid of duplicate lines from a file or pipe, use
-</p>
-<pre>sort -u</pre> or <pre>sort | uniq</pre>
+<p>If you want to get rid of duplicate lines from a file or pipe, use</p>
+<pre>sort -u</pre>
+or
+<pre>sort | uniq</pre>
 
 <br />
 
 <p>
-For example, maybe you're searching for another front-end to <code>libpurple</code>,
-the library underneath <a href="https://www.pidgin.im/">pidgin</a>.
-You try to use <code>apt-cache rdepends</code>
-but find the output is cluttered with duplicate entries
-(<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=335925">bug #335925</a>).
+  For example, maybe you're searching for another front-end to
+  <code>libpurple</code>, the library underneath
+  <a href="https://www.pidgin.im/">pidgin</a>. You try to use
+  <code>apt-cache rdepends</code> but find the output is cluttered with
+  duplicate entries (<a
+    href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=335925"
+    >bug #335925</a
+  >).
 </p>
 
 <pre>
@@ -38,12 +41,13 @@ $ apt-cache rdepends libpurple0 | tail -n +3 | sort
   telepathy-haze
 </pre>
 <p>
-Note that I've trimmed off the header (with <code>tail</code>)
-and sorted the list (with <code>sort</code>) here to make this more obvious.
+  Note that I've trimmed off the header (with <code>tail</code>) and sorted the
+  list (with <code>sort</code>) here to make this more obvious.
 </p>
 
 <p>
-Using the above tip to see only unique lines, you can easily work around this bug:
+  Using the above tip to see only unique lines, you can easily work around this
+  bug:
 </p>
 <pre>
 $ apt-cache rdepends libpurple0 | tail -n +3 | sort -u

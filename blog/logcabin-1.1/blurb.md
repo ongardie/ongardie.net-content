@@ -9,7 +9,6 @@ includes a C++ implementation of the
 ![LogCabin logo](${VAR_URL_PREFIX}/blog/logcabin-1.1/logo.png)
 </center>
 
-
 LogCabin has gotten a bunch of improvements and bug fixes in the three months
 since the [release of LogCabin 1.0](${URL_PREFIX}/blog/logcabin-1.0/).
 The
@@ -21,8 +20,7 @@ changes to unstable APIs.
 A few of the more interesting changes are highlighted below, but all users are
 encouraged to upgrade so that they have the latest bug fixes.
 
-logcabinctl
------------
+## logcabinctl
 
 LogCabin was developed with clusters of servers in mind and where a single
 leader handles all client requests. The client library is structured so that
@@ -43,8 +41,7 @@ snapshotting after system-wide test failures, which improves our odds of
 finding meaningful Raft log entries with the history of commands when we go to
 triage the failure.
 
-Performance improvements
-------------------------
+## Performance improvements
 
 I've been pointing out any performance-related changes in this series of blog
 posts, and there's a few of them in v1.1:
@@ -61,9 +58,7 @@ posts, and there's a few of them in v1.1:
   catching up new servers or servers that have fallen far behind
   ([fcbacbb](https://github.com/logcabin/logcabin/commit/fcbacbb)).
 
-
-LogCabin talk
--------------
+## LogCabin talk
 
 I gave a talk at Scale a couple days ago on how to use and operate LogCabin,
 along with how it works internally. Those slides are
@@ -76,9 +71,7 @@ code layout. Further slides explain a little bit about what's in each directory.
 <a href="https://logcabin.github.io/talk/#/codewalkthrough"><img src="${VAR_URL_PREFIX}/blog/logcabin-1.1/directories.png" alt="LogCabin code layout" style="max-width: 100%" /></a>
 </center>
 
-
-LogCabin in RAMCloud
---------------------
+## LogCabin in RAMCloud
 
 **Update:** I've added support for LogCabin v1.1 in the
 [RAMCloud](https://github.com/PlatformLab/RAMCloud/) storage system, where it can now be
@@ -92,9 +85,7 @@ for [ZooKeeper](https://zookeeper.apache.org) and is now joined by
 [LogCabinStorage](https://github.com/PlatformLab/RAMCloud/blob/master/src/LogCabinStorage.h)
 for LogCabin.
 
-
-Next for LogCabin
------------------
+## Next for LogCabin
 
 [Scale Computing](https://www.scalecomputing.com) is testing their next release,
 which will include LogCabin v1.1, now, and they plan on shipping it to customer
@@ -106,7 +97,7 @@ patches as they come up. Scale plans to continue using LogCabin and will take a
 more active role in maintaining it and building out new features as needed.
 
 I'll take this opportunity to mention that Scale is looking for several more
-engineers, and they've recently closed an $18 million round of funding.
+engineers, and they've recently closed an \$18 million round of funding.
 Feel free to contact me directly if you'd like to chat about what it's like at
 Scale, and I can put you in touch with the right people there.
 

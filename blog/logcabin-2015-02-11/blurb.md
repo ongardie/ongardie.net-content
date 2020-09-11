@@ -2,22 +2,19 @@ This is the fourth in a series of blog posts detailing the ongoing development
 of [LogCabin](https://github.com/logcabin/logcabin). This entry describes
 LogCabin's new storage module and several other recent improvements.
 
+---
 
-----
-
-
-Storage Module
---------------
+## Storage Module
 
 Storage modules are how LogCabin servers persist their logs to disk. Most of
 the time, entries are just appended to the end of the log. Two other operations
 come up less frequently:
 
 1. If leaders change, a few entries from the end of the log might need to be
-truncated away.
+   truncated away.
 
 2. Periodically, snapshots are written that make some prefix of the log
-redundant. Those entries should be discarded.
+   redundant. Those entries should be discarded.
 
 Up until now, LogCabin had a pretty naive storage module named SimpleFileLog.
 On each log append, SimpleFileLog would write the new log entry to disk as a
@@ -65,9 +62,7 @@ few extra zero bytes at the end are truncated, just to tidy things up.
 SegmentedLog will become the default storage module once we gain more
 experience with it, and SimpleFileLog will be deprecated soon.
 
-
-Configurable Timeouts
----------------------
+## Configurable Timeouts
 
 Two classes of timeouts where hard-coded in LogCabin and are now configurable:
 
@@ -80,14 +75,12 @@ Two classes of timeouts where hard-coded in LogCabin and are now configurable:
 
 The interesting thing about the lower-level heartbeats is that the code is
 shared with the client library, and the client library doesn't consume a
-configuration file. Thus, the ``Client::Cluster`` constructor can now take a
+configuration file. Thus, the `Client::Cluster` constructor can now take a
 map from string to string of options, which applications can configure as they
 see fit. The only option so far is this timeout setting, but I'm sure more will
 follow.
 
-
-Application-Level Testing
--------------------------
+## Application-Level Testing
 
 LogCabin's client library includes a mode in which all operations execute using
 an in-memory tree data structure. This is meant to aid with testing
@@ -108,8 +101,7 @@ These protocols aren't exactly part of the public LogCabin API, but using this
 low layer allows applications to get at all the information they need in a few
 lines of code, without being burdened by a bunch of C++ types.
 
-Misc
-----
+## Misc
 
 - Remember those [event loop
   crashes](https://github.com/logcabin/logcabin/issues/82) from [the last
@@ -138,11 +130,9 @@ Misc
   to be the easiest path to to a binary RPM. Building an RPM also meant we had
   to choose a version number; the current version is a humble 0.0.1-alpha.0.
 
-
 <a name="logcabin-2015-02-11-performance"></a>
 
-A Note on LogCabin's Performance
---------------------------------
+## A Note on LogCabin's Performance
 
 Several people have asked me about LogCabin's performance. The top questions are:
 
@@ -155,7 +145,7 @@ hasn't gotten the dedicated attention it needs.
 I made several changes while running benchmarks for my dissertation that still
 haven't landed in master (these are in the
 [nasty-thesis-wip](https://github.com/logcabin/logcabin/commit/a7ce12da) tag,
-which I *will not* be supporting). Some of these changes may be improvements
+which I _will not_ be supporting). Some of these changes may be improvements
 while others are probably bad ideas. They need further evaluation and care
 before they're ready to merge.
 
@@ -191,9 +181,7 @@ And the bad news:
   some careful measurement, and while I enjoy working on that kind of stuff,
   LogCabin performs well enough at the moment that it's not a high priority.
 
-
-Next
-----
+## Next
 
 I'll be working through more of the [issue
 backlog](https://github.com/logcabin/logcabin/issues) next. First up is a

@@ -1,106 +1,118 @@
 <p>
-I needed an excuse to try <a href="http://blog.m8t.in/">Mike</a>'s
-<a href="https://git.xfce.org/bindings/xfce4-vala/">Vala bindings for Xfce</a>,
-so I created a new little plugin for the panel, the
-<a href="https://docs.xfce.org/panel-plugins/xfce4-stopwatch-plugin">xfce4-stopwatch-plugin</a>.
+  I needed an excuse to try <a href="http://blog.m8t.in/">Mike</a>'s
+  <a href="https://git.xfce.org/bindings/xfce4-vala/">Vala bindings for Xfce</a
+  >, so I created a new little plugin for the panel, the
+  <a href="https://docs.xfce.org/panel-plugins/xfce4-stopwatch-plugin"
+    >xfce4-stopwatch-plugin</a
+  >.
 </p>
 
-<p>
-In the original release announcement on July 28th, I wrote:
-</p>
+<p>In the original release announcement on July 28th, I wrote:</p>
 <blockquote>
-<p>
-This is the first release of the stopwatch panel plugin, which you can
-use to time yourself on different tasks. It's stable and usable, but
-quite minimal still.
-</p>
+  <p>
+    This is the first release of the stopwatch panel plugin, which you can use
+    to time yourself on different tasks. It's stable and usable, but quite
+    minimal still.
+  </p>
 </blockquote>
 
 <p>
-The functionality is best summarized with this image from the web site:
-<img src="${VAR_URL_PREFIX}/blog/stopwatch/help.png" alt="screenshots" />
+  The functionality is best summarized with this image from the web site:
+  <img src="${VAR_URL_PREFIX}/blog/stopwatch/help.png" alt="screenshots" />
 </p>
 
 <hr />
 
 <h2>Vala</h2>
-<p>
-From their web site,
-</p>
+<p>From their web site,</p>
 <blockquote>
-<p>
-<a href="https://wiki.gnome.org/Projects/Vala">Vala</a> is a new programming language
-that aims to bring modern programming language features to GNOME developers
-without imposing any additional runtime requirements and without using a
-different ABI compared to applications and libraries written in C.
-</p>
+  <p>
+    <a href="https://wiki.gnome.org/Projects/Vala">Vala</a> is a new
+    programming language that aims to bring modern programming language
+    features to GNOME developers without imposing any additional runtime
+    requirements and without using a different ABI compared to applications and
+    libraries written in C.
+  </p>
 </blockquote>
 
 <p>
-Instead of having to write tons of
-<a href="https://developer.gnome.org/gobject/unstable/howto-gobject.html">boilerplate code</a>
-to create new GObjects in C and for other common tasks in developing GTK-based
-applications, Vala builds these features into the language. The Vala code you
-write passes through the Vala compiler, which produces GObject-based C code.
-From there, GCC compiles that to a binary as usual. There is no runtime, so
-Vala-produced code can run as fast as hand-coded C.
+  Instead of having to write tons of
+  <a href="https://developer.gnome.org/gobject/unstable/howto-gobject.html"
+    >boilerplate code</a
+  >
+  to create new GObjects in C and for other common tasks in developing
+  GTK-based applications, Vala builds these features into the language. The
+  Vala code you write passes through the Vala compiler, which produces
+  GObject-based C code. From there, GCC compiles that to a binary as usual.
+  There is no runtime, so Vala-produced code can run as fast as hand-coded C.
 </p>
 
 <p>
-Vala makes it easy to write fast, object-oriented code for GTK-based projects.
-With Mike's Xfce bindings for Vala, you gain access to Xfce's libraries from
-Vala, letting you write panel plugins or other Xfce projects in Vala. It's a
-cool idea and something I definitely wanted to try.
+  Vala makes it easy to write fast, object-oriented code for GTK-based
+  projects. With Mike's Xfce bindings for Vala, you gain access to Xfce's
+  libraries from Vala, letting you write panel plugins or other Xfce projects
+  in Vala. It's a cool idea and something I definitely wanted to try.
 </p>
 
 <h2>Developing the Stopwatch Plugin</h2>
 <p>
-In general, Vala is pretty easy to write if you've worked with GObject before.
-I did hit a few bugs while developing even this simple plugin, so it's evident
-that Vala and the Xfce bindings aren't mature yet:
+  In general, Vala is pretty easy to write if you've worked with GObject
+  before. I did hit a few bugs while developing even this simple plugin, so
+  it's evident that Vala and the Xfce bindings aren't mature yet:
 </p>
 
 <ul>
+  <li>
+    I filed
+    <a href="https://bugzilla.gnome.org/show_bug.cgi?id=587150"
+      >GNOME Bug 587150</a
+    >, a bug in Vala's POSIX bindings for the <code>time_t</code> type. Vala
+    treats it as a GObject instead of an integer, making it unusable to pass
+    around your program in many ways. This bug hasn't seen any attention yet,
+    but I've worked around it for Stopwatch by not using <code>time_t</code>.
+    <p><strong>Update:</strong> Evan Nemerson fixed this one.</p>
+  </li>
 
-<li>
-I filed <a href="https://bugzilla.gnome.org/show_bug.cgi?id=587150">GNOME Bug 587150</a>,
-a bug in Vala's POSIX bindings for the <code>time_t</code> type. Vala treats it
-as a GObject instead of an integer, making it unusable to pass around your
-program in many ways. This bug hasn't seen any attention yet, but I've worked
-around it for Stopwatch by not using <code>time_t</code>.
-<p><strong>Update:</strong> Evan Nemerson fixed this one.</p>
-</li>
+  <li>
+    I
+    <a
+      href="https://git.xfce.org/bindings/xfce4-vala/commit/?id=f1695e8f95e9647db4989c968cf4768476272e0e"
+      >patched</a
+    >
+    a small bug in Xfce's Vala bindings for the XfceHVBox widget. The Vala
+    compiler was producing calls to <code>xfce_hv_box_new()</code> instead of
+    <code>xfce_hvbox_new()</code>, which of course caused a problem when GCC
+    tried to resolve the symbol.
+  </li>
 
-<li>
-I <a href="https://git.xfce.org/bindings/xfce4-vala/commit/?id=f1695e8f95e9647db4989c968cf4768476272e0e">patched</a>
-a small bug in Xfce's Vala bindings for the XfceHVBox
-widget. The Vala compiler was producing calls to <code>xfce_hv_box_new()</code>
-instead of <code>xfce_hvbox_new()</code>, which of course caused a problem when
-GCC tried to resolve the symbol.
-</li>
-
-<li>
-I also filed <a href="https://bugzilla.gnome.org/show_bug.cgi?id=589930">GNOME Bug 589930</a>,
-a bug in Vala's generated code for <code>sscanf</code>. It always added an
-extra NULL argument at the end of the arguments list. Jürg Billeter fixed this
-one quickly with
-<a href="https://gitlab.gnome.org/GNOME/vala/commit/7d5a61e38664ceabfe6a903af38d057bdf831a4b">this commit</a>,
-which made it into Vala 0.7.5.
-</li>
-
+  <li>
+    I also filed
+    <a href="https://bugzilla.gnome.org/show_bug.cgi?id=589930"
+      >GNOME Bug 589930</a
+    >, a bug in Vala's generated code for <code>sscanf</code>. It always added
+    an extra NULL argument at the end of the arguments list. Jürg Billeter
+    fixed this one quickly with
+    <a
+      href="https://gitlab.gnome.org/GNOME/vala/commit/7d5a61e38664ceabfe6a903af38d057bdf831a4b"
+      >this commit</a
+    >, which made it into Vala 0.7.5.
+  </li>
 </ul>
 
 <hr />
 
 <p>
-Despite these hurdles, writing the Stopwatch plugin in Vala has been a
-pleasure. Admittedly the plugin doesn't do much, but the code is very short and
-straight-forward.
+  Despite these hurdles, writing the Stopwatch plugin in Vala has been a
+  pleasure. Admittedly the plugin doesn't do much, but the code is very short
+  and straight-forward.
 </p>
 
 <p>
-Stopwatch will probably see just one or two more releases before it's
-feature-complete. I'd also like to port the Places plugin to Vala at some
-point, but I'm waiting to see how volume management plays out once
-<a href="https://web.archive.org/web/20131029170008/http://gezeiten.org/post/2009/06/Preview:-Browsing-SFTP-with-Thunar">ThunarVFS is gone</a>.
+  Stopwatch will probably see just one or two more releases before it's
+  feature-complete. I'd also like to port the Places plugin to Vala at some
+  point, but I'm waiting to see how volume management plays out once
+  <a
+    href="https://web.archive.org/web/20131029170008/http://gezeiten.org/post/2009/06/Preview:-Browsing-SFTP-with-Thunar"
+    >ThunarVFS is gone</a
+  >.
 </p>

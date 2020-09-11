@@ -5,10 +5,9 @@ out the contents of a LogCabin server's log and snapshot, a couple of
 performance improvements, and several changes around how server IDs and
 addresses are assigned and used.
 
-----
+---
 
-Cluster Clock
--------------
+## Cluster Clock
 
 The servers' state machines keep track of client sessions, as described in
 section 6.3 of my
@@ -26,7 +25,7 @@ LogCabin used to expire client sessions using wall time. The leader that
 created each log entry would attach its current system time to each command in
 the log, and the state machines would use these times to expire sessions
 (remember, the state machines have to be deterministic). Client sessions were
-expired after an hour of inactivity,  a fairly long time so that clients would
+expired after an hour of inactivity, a fairly long time so that clients would
 hardly ever panic. And the client library sends heartbeats to keep its session
 alive during periods of inactivity, useful in case a client made some changes,
 stopped for an hour, and then came back to issue more requests.
@@ -59,9 +58,7 @@ sessions. Because these times are committed in the log, they are the same for
 each state machine. They are also monotonic since the clock on each leader is
 monotonic, and they won't be affected by the system clocks at all.
 
-
-Storage/Tool
-------------
+## Storage/Tool
 
 A [new executable](https://github.com/logcabin/logcabin/commit/7ff9a7c1) (built
 at `build/Storage/Tool` and installed as `logcabin-storage`) dumps the contents
@@ -82,9 +79,7 @@ to work even over NFS. I don't encourage NFS use for LogCabin storage in
 production, by the way, but I use it sometimes for testing; I wanted this to
 just work.
 
-
-Performance Improvements
-------------------------
+## Performance Improvements
 
 After the [last blog post](${URL_PREFIX}/blog/logcabin-2015-02-11/),
 I was inspired to look through the code I used for my dissertation benchmarks
@@ -92,14 +87,14 @@ and [take inventory](https://github.com/logcabin/logcabin/issues/95) of it.
 It had various changes that aren't necessarily good ideas, and two that were useful:
 
 1. It changed the log entry command format from ProtoBuf's slow text format
-(mainly useful for debugging and unit tests) to its fast binary format. I
-didn't use the exact same code, but I did [fix
-this](https://github.com/logcabin/logcabin/issues/96). I'd expect a moderate
-increase in performance.
+   (mainly useful for debugging and unit tests) to its fast binary format. I
+   didn't use the exact same code, but I did [fix
+   this](https://github.com/logcabin/logcabin/issues/96). I'd expect a moderate
+   increase in performance.
 
 2. Pipelining of AppendEntries RPCs. The code there isn't very useful, but it
-did prove that pipelining is a good idea. I created [issue
-97](https://github.com/logcabin/logcabin/issues/97) to track this.
+   did prove that pipelining is a good idea. I created [issue
+   97](https://github.com/logcabin/logcabin/issues/97) to track this.
 
 There was also another minor issue with a major effect: the Raft module in
 LogCabin has a corresponding Invariants class, which runs before the Raft
@@ -112,15 +107,13 @@ definitely shouldn't run in production. I disabled it by default, and it can be
 re-enabled with the config setting `raftDebug` (the `storageDebug` flag is
 similar but affects the `SegmentedLog` storage module).
 
-
-Server IDs
-----------
+## Server IDs
 
 Server IDs have been [broken](https://github.com/logcabin/logcabin/issues/47)
 for years, ever since membership changes were introduced. For example, running
 a LogCabin daemon without specifying a server ID would just default to server
-ID 1. Reconfiguring a cluster would assign the given *N* addresses the IDs 1
-through *N*. If you didn't get things in exactly the right order everywhere,
+ID 1. Reconfiguring a cluster would assign the given _N_ addresses the IDs 1
+through _N_. If you didn't get things in exactly the right order everywhere,
 terrible things could happen, like two servers having the same ID, or one
 server having two IDs, or addresses being completely incorrect.
 
@@ -128,25 +121,24 @@ I made several changes in this space:
 
 - Server IDs must always be assigned explicitly; there is no default anymore.
 - Server IDs are now given on the configuration file rather than as a
-command-line argument. Configuration files can no longer be shared across
-servers this way, but on the other hand, each configuration file does not need
-to list every other server.
+  command-line argument. Configuration files can no longer be shared across
+  servers this way, but on the other hand, each configuration file does not need
+  to list every other server.
 - Servers can now supply multiple addresses to listen on, and clients and
-servers will attempt to use any of them (randomly). Setting the addresses is
-also required in the configuration file.
+  servers will attempt to use any of them (randomly). Setting the addresses is
+  also required in the configuration file.
 - The Reconfigure script now takes the addresses given to it, and it queries
-each server in turn to find its server ID and its canonical list of addresses.
-It uses these IDs and addresses to form the new configuration. This makes
-Reconfigure much [safer](https://github.com/logcabin/logcabin/issues/73), and
-it avoids having to pass every server ID to the Reconfigure script on the
-command line.
+  each server in turn to find its server ID and its canonical list of addresses.
+  It uses these IDs and addresses to form the new configuration. This makes
+  Reconfigure much [safer](https://github.com/logcabin/logcabin/issues/73), and
+  it avoids having to pass every server ID to the Reconfigure script on the
+  command line.
 
 The [README](https://github.com/logcabin/logcabin#readme) got an update due to
 these and other issues. It also no longer relies on `/etc/hosts` for DNS, so it
 should be easier for people to give LogCabin a spin.
 
-Next
-----
+## Next
 
 I'm not sure what's next, but I'll keep working on the [issue
 backlog](https://github.com/logcabin/logcabin/issues) unless something new pops

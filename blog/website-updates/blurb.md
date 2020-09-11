@@ -9,15 +9,15 @@ I recently overhauled the code to run as a static site generator. This makes it
 easier to run locally, feels better from a security perspective, and actually
 simplifies the code in a few ways:
 
- - When serving individual requests, you need to figure out what page the
-   request is asking for. With generating an entire site, you just loop through
-   all the possible pages.
- - When serving individual requests, you need to load in only the relevant data
-   for those requests. When generating an entire site, you can just load the
-   input data once at startup.
- - When serving individual requests, you need to recover gracefully from errors.
-   When generating an entire site, you can just let any exceptions propogate to
-   crashing the program and have the user fix the problem and rerun.
+- When serving individual requests, you need to figure out what page the
+  request is asking for. With generating an entire site, you just loop through
+  all the possible pages.
+- When serving individual requests, you need to load in only the relevant data
+  for those requests. When generating an entire site, you can just load the
+  input data once at startup.
+- When serving individual requests, you need to recover gracefully from errors.
+  When generating an entire site, you can just let any exceptions propogate to
+  crashing the program and have the user fix the problem and rerun.
 
 One thing I gave up in switching to a static site generator was the page trail.
 Before, the history of where you've been on this site was tracked with a session

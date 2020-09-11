@@ -46,8 +46,7 @@ The making of the new LogCabin logo. Analog to digital to analog to digital.
 </blockquote>
 </center>
 
-Included with 1.0
------------------
+## Included with 1.0
 
 At a high level, LogCabin looks similar to
 [Chubby](https://research.google/pubs/pub27897/),
@@ -55,8 +54,8 @@ At a high level, LogCabin looks similar to
 [etcd](https://github.com/etcd-io/etcd). It's a network service providing a
 small amount of consistent storage. You can set keys to values in a
 hierarchical tree, fetch keys, and list the keys in a particular "directory".
-It supports compare-and-swap style operations, such as set key *x* to value *y*
-but only if its current value is *z* (actually, you can add a condition to any
+It supports compare-and-swap style operations, such as set key _x_ to value _y_
+but only if its current value is _z_ (actually, you can add a condition to any
 operation, and it can require that a distinct key have the given value). Every
 operation in LogCabin is linearizable, meaning that the effect of a write is
 immediately visible to all future reads, and writes appear to happen atomically
@@ -74,9 +73,7 @@ data. See the [release
 notes](https://github.com/logcabin/logcabin/blob/master/RELEASES.md) for
 exactly what makes up the stable API.
 
-
-The 1.0 label
--------------
+## The 1.0 label
 
 In LogCabin's case, 1.0 means that I think it's ready to be deployed to
 production. You'll still have to do your due diligence in testing, of course. I
@@ -88,9 +85,7 @@ if it couldn't (perhaps across some major version bumps), shutting down and
 restarting a LogCabin cluster with moderate amounts of data only takes a couple
 of seconds.
 
-
-Next for LogCabin
------------------
+## Next for LogCabin
 
 While we think 1.0 is useful as is and hope others will try it, there is still
 plenty we'd like to do. Several higher-level client-facing features are on the

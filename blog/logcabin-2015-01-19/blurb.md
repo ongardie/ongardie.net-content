@@ -5,8 +5,7 @@ occurred when unregistering handlers from the event loop.
 
 ---
 
-Server Stats
-------------
+## Server Stats
 
 Nate Hardt has been integrating and testing LogCabin into Scale's software
 stack, and he's run into a few issues lately that were needlessly
@@ -164,9 +163,7 @@ module. There's also room for improvement on formatting the information nicely
 and highlighting problems. Still, it's a useful tool already, and it's a good
 starting point for further iteration.
 
-
-DumpTree
---------
+## DumpTree
 
 It's also important to be able to see what a LogCabin state machine is storing
 in its Tree structure. I created a simple client called `DumpTree` to
@@ -174,9 +171,7 @@ recursively list out the values for each key. This will only work for small
 state machines with human-readable values, but it's so much better than not
 being able to see inside at all or writing a new C++ client every time.
 
-
-Event Loop Crashes
-------------------
+## Event Loop Crashes
 
 Nate kept running into crashes like [this
 one](https://github.com/logcabin/logcabin/issues/82), which came with pretty
@@ -195,11 +190,10 @@ descriptor with the event loop and arrange for the event loop thread to call a
 virtual `handleFileEvent()` method appropriately. The destructor on File would
 first interrupt the event loop thread, then unregister the file handler.
 
-
 `RPC::ReceiveSocket` is one example of a class that derives from `Event::File`,
 representing the receiving end of a TCP connection. When ReceiveSocket is
 destroyed, C++ calls its destructor, starts to destroy the ReceiveSocket
-members, probably scribbles on the vtable, and only *then* does it call the
+members, probably scribbles on the vtable, and only _then_ does it call the
 destructor on the base class, `Event::File`. If the event loop thread called
 handleFileEvent at this point (just before the `Event::File` destructor), the
 process would crash.
@@ -223,13 +217,10 @@ is relatively easy for users of these classes to get right: they generally
 declare a monitor following a handler in the same object or scope. The
 monitor's constructor needs a reference to the handler, so it's hard to declare
 these variables backwards. And if someone forgets to create a monitor
-altogether, their handler will *never* fire, so they will probably notice in
+altogether, their handler will _never_ fire, so they will probably notice in
 testing.
 
-
-
-Next
-----
+## Next
 
 Scale is in the middle of an office move that's making some of the development
 and test clusters unavailable, so it's probably a good time to work through

@@ -4,21 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" href="${VAR_URL_PREFIX}/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="${VAR_URL_PREFIX}/css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="${VAR_URL_PREFIX}/css/style.css" />
-    <link rel="alternate"  type="application/rss+xml" href="${URL_PREFIX}/blog/rss.xml" title="Blog RSS Feed" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${VAR_URL_PREFIX}/css/layout.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${VAR_URL_PREFIX}/css/style.css"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="${URL_PREFIX}/blog/rss.xml"
+      title="Blog RSS Feed"
+    />
     <title>${PAGE_TITLE} - ongardie.net</title>
   </head>
 
   <body>
-
     <div id="line1"></div>
     <div id="line2"></div>
     <div id="line3"></div>
 
-    <h1 id="header">
-      ${PAGE_TITLE}
-    </h1>
+    <h1 id="header">${PAGE_TITLE}</h1>
 
     <div id="menu">
       <ul>
@@ -26,8 +36,14 @@
         <li><a href="${URL_PREFIX}/">diego ongaro</a></li>
         <li><a href="${URL_PREFIX}/pubs/">pubs</a></li>
         <li>
-            <a href="${URL_PREFIX}/blog/">blog</a>
-            <a href="${URL_PREFIX}/blog/rss.xml"><img src="${VAR_URL_PREFIX}/blog/rss.png" style="margin: 0; padding: 0; border: 0" alt="RSS" /></a>
+          <a href="${URL_PREFIX}/blog/">blog</a>
+          <a href="${URL_PREFIX}/blog/rss.xml">
+            <img
+              src="${VAR_URL_PREFIX}/blog/rss.png"
+              style="margin: 0; padding: 0; border: 0"
+              alt="RSS"
+            />
+          </a>
         </li>
         <li><a href="${URL_PREFIX}/misc/">misc</a></li>
       </ul>
@@ -35,14 +51,13 @@
 
     <div id="content">
       ${CONTENT}
-      <div style="clear:both">&nbsp;</div>
+      <div style="clear: both">&nbsp;</div>
     </div>
 
     <div id="footer">
       (c) 2007-2020 <a href="${URL_PREFIX}/diego/">Diego Ongaro</a><br />
-      <a href="${URL_PREFIX}/misc/#source">this website is open source</a><br />
+      <a href="${URL_PREFIX}/misc/#source">this website is open source</a
+      ><br />
     </div>
-
   </body>
-
 </html>

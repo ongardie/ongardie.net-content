@@ -8,8 +8,7 @@ longer be safe.
 
 ---
 
-Not Quite C++11
----------------
+## Not Quite C++11
 
 C++11 specifies a bunch of new time-related classes, including
 [steady_clock](https://en.cppreference.com/w/cpp/chrono/steady_clock),
@@ -27,20 +26,20 @@ variable.
 
 The monotonic clock in 4.4 is just a typedef to the system clock, so it is
 prone to jumps in time caused by, e.g., NTP. Moreover, up until 4.8, the
-now-called ``std::chrono::steady_clock`` and ``std::chrono::system_clock`` are
+now-called `std::chrono::steady_clock` and `std::chrono::system_clock` are
 rounded to the nearest microsecond for default libstdc++ compiles. LogCabin
 doesn't strictly need nanosecond granularity, but it sure makes life easier<sup>[1](#logcabin-2015-01-05-footnote-1)</sup>.
 For example, with nanosecond granularity you don't have to worry so much about
-``<`` vs ``<=`` (especially in unit tests), since every clock reading is highly
+`<` vs `<=` (especially in unit tests), since every clock reading is highly
 likely to be different from the previous.
 
 Ultimately, I implemented versions of the monotonic and system clocks that
-LogCabin can rely on, which call ``clock_gettime()``. LogCabin will use these
+LogCabin can rely on, which call `clock_gettime()`. LogCabin will use these
 when it's running on libstdc++ versions below 4.8.
 
 #### Condition Variable
 
-Even with the working clocks, I was unable to get ``std::condition_variable``
+Even with the working clocks, I was unable to get `std::condition_variable`
 to work reliably on all libstdc++ versions. Thus, I rewrote LogCabin's
 [ConditionVariable wrapper
 class](https://github.com/logcabin/logcabin/blob/7be0672c/Core/ConditionVariable.h)
@@ -58,8 +57,7 @@ to wait until midnight 6 hours from now, and NTP jumped forward by 2 hours,
 you'd wake up at 2am. But I think that use case is rare, and it doesn't occur
 in LogCabin as of now.
 
-Client API
-----------
+## Client API
 
 Once I had reliable clocks and condition variables, I started to [implement
 timeouts](https://github.com/logcabin/logcabin/issues/69) in the RPC system and
@@ -73,15 +71,15 @@ time-consuming things that happen in the client library:
 The second and third ones were relatively straightforward, though they affected
 a lot of functions where timeout values had to be pushed down and new error
 codes sent back up. Waiting for an RPC response with a timeout just required
-adding a timeout to a condition variable wait. Using ``connect()`` with a
-timeout requires putting the socket in non-blocking mode, calling ``connect()``
+adding a timeout to a condition variable wait. Using `connect()` with a
+timeout requires putting the socket in non-blocking mode, calling `connect()`
 on it, and using poll/select/epoll with a timeout to learn when it's ready (see
-the man page for ``connect()`` under ``EINPROGRESS``).
+the man page for `connect()` under `EINPROGRESS`).
 
 Unfortunately, resolving a DNS name with a timeout appears to be difficult. I
-started down the road of using ``getaddrinfo_a()``, only to learn that its
+started down the road of using `getaddrinfo_a()`, only to learn that its
 current implementation leaves much to be desired. It's implemented as a thread
-pool, where workers call the synchronous ``getaddrinfo()`` to do DNS
+pool, where workers call the synchronous `getaddrinfo()` to do DNS
 resolution, and they can't be interrupted from this. Thus, there's no real way
 to cancel a DNS request once it's started, say upon a timeout, and it seems
 that the memory for the request must be kept valid through its completion. I
@@ -91,21 +89,19 @@ but I wasn't ready to go down that path. I've left this as [future
 work](https://github.com/logcabin/logcabin/issues/75). For now, DNS resolution
 will continue to be bound by the system timeout setting, not those specified by
 LogCabin clients; if you're relying on timeouts, it's a good idea to specify IP
-addresses or use a local ``/etc/hosts`` file.
+addresses or use a local `/etc/hosts` file.
 
-
-Next
-----
+## Next
 
 I can't say for certain what's coming next. One idea is to start working on
 administrative tools to introspect the LogCabin state and/or extract metrics
 from the LogCabin servers. We'll see. Thanks to [Scale
 Computing](https://www.scalecomputing.com) for supporting this work.
 
-----
+---
 
 1. <a id="logcabin-2015-01-05-footnote-1"></a>Phil White warns that two time
-readings with nanosecond granularity may still return the same value on a
-virtual machine. See [KVM timekeeping
-docs](https://www.kernel.org/doc/html/latest/virt/kvm/timekeeping.html#virtualization-problems),
-section 4, for related reading.
+   readings with nanosecond granularity may still return the same value on a
+   virtual machine. See [KVM timekeeping
+   docs](https://www.kernel.org/doc/html/latest/virt/kvm/timekeeping.html#virtualization-problems),
+   section 4, for related reading.

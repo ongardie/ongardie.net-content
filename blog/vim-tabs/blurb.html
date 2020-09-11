@@ -1,27 +1,31 @@
-<img src="${VAR_URL_PREFIX}/blog/vim-tabs/vim-logo.png" alt="Vim logo" style="float:right" />
+<img
+  src="${VAR_URL_PREFIX}/blog/vim-tabs/vim-logo.png"
+  alt="Vim logo"
+  style="float: right"
+/>
 <p>
-Version 7 of Vim introduced tabs to the editor, and these are a few of
-my tab-related tips.
+  Version 7 of Vim introduced tabs to the editor, and these are a few of my
+  tab-related tips.
 </p>
 
 <hr />
 
 <h2>Open Files in Tabs</h2>
 <p>
-If you want to open multiple files in their own tabs in a new Vim
-session, use the <code>-p</code> flag on the command line for
-<code>vim</code> or <code>gvim</code>. For example, to open all files
-in the current directory, use the following:</p>
+  If you want to open multiple files in their own tabs in a new Vim session,
+  use the <code>-p</code> flag on the command line for <code>vim</code> or
+  <code>gvim</code>. For example, to open all files in the current directory,
+  use the following:
+</p>
 <pre>
 vim -p *
 </pre>
 
 <p style="padding-top: 10px">
-When you give Vim multiple files to edit, its default behavior is to
-use several buffers. If you want to use tabs as the default behavior
-instead (that is, without typing the <code>-p</code> flag every time),
-set up a couple shell aliases. For bash, place these in your
-<code>~/.bashrc</code>:
+  When you give Vim multiple files to edit, its default behavior is to use
+  several buffers. If you want to use tabs as the default behavior instead
+  (that is, without typing the <code>-p</code> flag every time), set up a
+  couple shell aliases. For bash, place these in your <code>~/.bashrc</code>:
 </p>
 <pre>
 alias vim='vim -p'
@@ -29,9 +33,9 @@ alias gvim='gvim -p'
 </pre>
 
 <p style="padding-top: 10px">
-Also, Vim will open a maximum of 10 tabs like this by default. To
-increase that limit to, for example, 50, add the following to your
-<code>~/.vimrc</code>:
+  Also, Vim will open a maximum of 10 tabs like this by default. To increase
+  that limit to, for example, 50, add the following to your
+  <code>~/.vimrc</code>:
 </p>
 <pre>
 set tabpagemax=50
@@ -39,17 +43,18 @@ set tabpagemax=50
 
 <h2>Easier Tab Navigation</h2>
 <p>
-When you have more than a few tabs open, it can become difficult to
-navigate them with only the keyboard. You can use
-<code>{count}gt</code> to go to the <em>count</em>-th tab
-(starting with 1), but counting them yourself is a waste of time.
-Placing the tab number on its label solves this problem.
+  When you have more than a few tabs open, it can become difficult to navigate
+  them with only the keyboard. You can use
+  <code>{count}gt</code> to go to the <em>count</em>-th tab (starting with 1),
+  but counting them yourself is a waste of time. Placing the tab number on its
+  label solves this problem.
 </p>
-<img src="${VAR_URL_PREFIX}/blog/vim-tabs/vim-tab-labels.png" alt="Vim tab labels" />
+<img
+  src="${VAR_URL_PREFIX}/blog/vim-tabs/vim-tab-labels.png"
+  alt="Vim tab labels"
+/>
 
-<p>
-Here's how I set a custom tab label:
-</p>
+<p>Here's how I set a custom tab label:</p>
 <pre>
 function! GuiTabLabel()
   " buffer_number[+] buffer_name [(number_windows)]

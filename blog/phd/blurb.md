@@ -20,11 +20,11 @@ RAMCloud; [Ankita](https://twitter.com/ankitaak) and John deserve the credit
 for that.)
 
 I wasn't impressed with the existing consensus-based systems, so I started
-learning about [Paxos](https://en.wikipedia.org/wiki/Paxos_(computer_science)),
+learning about [Paxos](<https://en.wikipedia.org/wiki/Paxos_(computer_science)>),
 the algorithm that's nearly synonymous with consensus.
 I struggled through how to build a complete system using Multi-Paxos, and
 meanwhile, John questioned whether Paxos even had the right approach. He kept
-pushing on the idea of *understandability*, to find the solution that's the
+pushing on the idea of _understandability_, to find the solution that's the
 easiest for someone else to understand. He asked: what's the advantage to
 agreeing on log entries (slots) out of order if they then have to be applied in
 order? If the game was understandability, I just couldn't defend Paxos on this

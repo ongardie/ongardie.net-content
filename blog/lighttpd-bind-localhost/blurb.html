@@ -1,15 +1,19 @@
-<img style="float:left" src="${VAR_URL_PREFIX}/blog/lighttpd-bind-localhost/lighttpd_logo.png" alt="lighttpd logo" />
+<img
+  style="float: left"
+  src="${VAR_URL_PREFIX}/blog/lighttpd-bind-localhost/lighttpd_logo.png"
+  alt="lighttpd logo"
+/>
 
 <p>
-I installed the web server <a href="https://www.lighttpd.net">lighttpd</a>
-on my laptop to test some configuration settings. As I didn't want to expose
-the server on the network, I uncommented
-<code>server.bind = "localhost"</code> from
-<code>/etc/lighttpd/lighttpd.conf</code>.
+  I installed the web server <a href="https://www.lighttpd.net">lighttpd</a>
+  on my laptop to test some configuration settings. As I didn't want to expose
+  the server on the network, I uncommented
+  <code>server.bind = "localhost"</code> from
+  <code>/etc/lighttpd/lighttpd.conf</code>.
 </p>
 
 <p style="clear: both">
-Then, restarting lighttpd failed with the following error:
+  Then, restarting lighttpd failed with the following error:
 </p>
 <pre>
 <span style="display:none">(network.c.201)</span>getaddrinfo failed:  Name or service not known ' localhost '
@@ -17,21 +21,19 @@ Then, restarting lighttpd failed with the following error:
 
 <hr />
 
+<p>This is lighttpd 1.4.19-5 from main on Debian Lenny.</p>
+
 <p>
-This is lighttpd 1.4.19-5 from main on Debian Lenny.
+  I was still able to ping localhost and checked my
+  <code>/etc/hosts</code> file, but everything seemed fine. Finally, I checked
+  the line of code the error points to (network.c line 201) and noticed it's
+  part of an IPv6-specific chunk of code.
 </p>
 
 <p>
-I was still able to ping localhost and checked my <code>/etc/hosts</code> file,
-but everything seemed fine. Finally, I checked the line of code the error
-points to (network.c line 201) and noticed it's part of an IPv6-specific chunk
-of code.
-</p>
-
-<p>
-I found I could work around this issue by disabling IPv6 entirely in
-<code>/etc/lighttpd/lighttpd.conf</code>. For the uninitiated, comment out this
-line:
+  I found I could work around this issue by disabling IPv6 entirely in
+  <code>/etc/lighttpd/lighttpd.conf</code>. For the uninitiated, comment out
+  this line:
 </p>
 <pre>
 &#35;&#35; Use ipv6 only if available.
@@ -40,43 +42,46 @@ include_shell "/usr/share/lighttpd/use-ipv6.pl"
 
 <h2>Other Reports of This Issue</h2>
 <p>
-A couple reports of the
-same problem can be found on the old lighttpd forums, but no resolution was
-reached. Unfortunately, I can't reply there because those forums are now
-locked, and historical threads were not copied to lighttpd's new forums. The
-first report was from Debian's 1.4.19-1 package, and the second report does not
-identify the version.
+  A couple reports of the same problem can be found on the old lighttpd forums,
+  but no resolution was reached. Unfortunately, I can't reply there because
+  those forums are now locked, and historical threads were not copied to
+  lighttpd's new forums. The first report was from Debian's 1.4.19-1 package,
+  and the second report does not identify the version.
 </p>
 
 <p>
-A <a href="https://lists.debian.org/debian-user-spanish/2009/03/msg00751.html">post</a>
-on the debian-user-spanish list reports the same problem on Debian Lenny but
-received no replies.
+  A
+  <a href="https://lists.debian.org/debian-user-spanish/2009/03/msg00751.html"
+    >post</a
+  >
+  on the debian-user-spanish list reports the same problem on Debian Lenny but
+  received no replies.
 </p>
 
 <p>
-That mailing list post does point to
-<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=489063">Debian bug 489063</a>
-(which doesn't come up on Google when you search for the error message). There,
-Pierre Habouzit, one of lighttpd's maintainers on Debian, suggests using
-<code>server.bind = "::1"</code> instead of <code>server.bind = "localhost"</code>
-when IPv6 is enabled. This will start up the server without errors, but then I
-can only access it as <code>http://ip6-localhost/</code> (not
-<code>http://localhost/</code>).
+  That mailing list post does point to
+  <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=489063"
+    >Debian bug 489063</a
+  >
+  (which doesn't come up on Google when you search for the error message).
+  There, Pierre Habouzit, one of lighttpd's maintainers on Debian, suggests
+  using
+  <code>server.bind = "::1"</code> instead of
+  <code>server.bind = "localhost"</code> when IPv6 is enabled. This will start
+  up the server without errors, but then I can only access it as
+  <code>http://ip6-localhost/</code> (not <code>http://localhost/</code>).
 </p>
 
 <h2>Conclusion</h2>
 <p>
-This is a pretty annoying little issue, and it hasn't fully been resolved.
-At a minimum, this:
+  This is a pretty annoying little issue, and it hasn't fully been resolved. At
+  a minimum, this:
 </p>
 <pre>
 &#35;&#35; bind to localhost only (default: all interfaces)
 # server.bind                = "localhost"
 </pre>
-<p>
-should be:
-</p>
+<p>should be:</p>
 <pre>
 &#35;&#35; bind to localhost only (default: all interfaces)
 &#35;&#35; use ::1 when IPv6 is enabled or localhost for IPv4
@@ -84,10 +89,8 @@ should be:
 # server.bind                = "::1"
 # server.bind                = "localhost"
 </pre>
+<p>That would at least point people in the right direction.</p>
 <p>
-That would at least point people in the right direction.
-</p>
-<p>
-I've sunk enough time into this for now, though.
-I'll post an update here if I pursue this any further.
+  I've sunk enough time into this for now, though. I'll post an update here if
+  I pursue this any further.
 </p>

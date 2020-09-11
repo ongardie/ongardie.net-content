@@ -1,67 +1,75 @@
-<img src="${VAR_URL_PREFIX}/blog/cgit-hacking/cgit-logo.png" alt="cgit logo" style="float:right" />
+<img
+  src="${VAR_URL_PREFIX}/blog/cgit-hacking/cgit-logo.png"
+  alt="cgit logo"
+  style="float: right"
+/>
 <p>
-Last week I hacked a couple new features into
-<a href="https://git.zx2c4.com/cgit/about/">cgit</a>, a web interface
-for Git, since it's the one I [previously used]
-on ongardie.net. I added
-<code>https://</code> URLs for the Atom feed and also syntax highlighting when
-viewing files.
+  Last week I hacked a couple new features into
+  <a href="https://git.zx2c4.com/cgit/about/">cgit</a>, a web interface for
+  Git, since it's the one I [previously used] on ongardie.net. I added
+  <code>https://</code> URLs for the Atom feed and also syntax highlighting
+  when viewing files.
 </p>
 
 <hr />
 
 <h2>HTTPS URLs for Cgit's Atom feed</h2>
 <p>
-Cgit generates Atom feeds so that you can keep track of changes from
-your feed reader. Unfortunately, that requires a full URL, which it
-assumed started with <code>http://</code>. This obviously didn't work
-for <code>https://</code>-only installations.
+  Cgit generates Atom feeds so that you can keep track of changes from your
+  feed reader. Unfortunately, that requires a full URL, which it assumed
+  started with
+  <code>http://</code>. This obviously didn't work for
+  <code>https://</code>-only installations.
 </p>
 <p>
-I modified cgit to check the <code>HTTPS</code> CGI variable. If it's
-set to <code>on</code>, cgit now generates full URLs starting with
-<code>https://</code>. While this isn't part of the official CGI spec,
-most servers will set it, including Apache and lighttpd.
+  I modified cgit to check the <code>HTTPS</code> CGI variable. If it's set to
+  <code>on</code>, cgit now generates full URLs starting with
+  <code>https://</code>. While this isn't part of the official CGI spec, most
+  servers will set it, including Apache and lighttpd.
 </p>
 <p>
-Lars Hjemli, the maintainer of cgit,
-<a href="https://git.zx2c4.com/cgit/commit/?id=87a89aed41136d388537b146000c4af6c1135a8c">merged in my change</a>,
-so it should be part of a future cgit release:
+  Lars Hjemli, the maintainer of cgit,
+  <a
+    href="https://git.zx2c4.com/cgit/commit/?id=87a89aed41136d388537b146000c4af6c1135a8c"
+    >merged in my change</a
+  >, so it should be part of a future cgit release:
 </p>
 <blockquote>
-<p>
-This looks good. I've merged it into my wip-branch [...]
-where I'll let it cook for a little while before merging to my master.
-</p>
+  <p>
+    This looks good. I've merged it into my wip-branch [...] where I'll let it
+    cook for a little while before merging to my master.
+  </p>
 </blockquote>
 
 <h2>Syntax Highlighting for Cgit</h2>
 <p>
-Cgit is useful for browsing around a project's history, but it didn't do
-syntax highlighting for source code. This made it unpleasant to use for
-reading complete files (as opposed to diffs).
+  Cgit is useful for browsing around a project's history, but it didn't do
+  syntax highlighting for source code. This made it unpleasant to use for
+  reading complete files (as opposed to diffs).
 </p>
 
 <p>
-I modified cgit to make use of the
-<a href="http://www.andre-simon.de/doku/highlight/en/highlight.php">highlight</a>
-program, when available, to color source code. If highlight is
-unavailable or fails, cgit falls back to the old black-and-white view.
+  I modified cgit to make use of the
+  <a href="http://www.andre-simon.de/doku/highlight/en/highlight.php"
+    >highlight</a
+  >
+  program, when available, to color source code. If highlight is unavailable or
+  fails, cgit falls back to the old black-and-white view.
 </p>
 
 <p>
-While the patch is small and self-contained, it's specific to highlight
-and just tacked on in the source code. Lars didn't take this one:
+  While the patch is small and self-contained, it's specific to highlight and
+  just tacked on in the source code. Lars didn't take this one:
 </p>
 <blockquote>
-<p>
-I like the result, but I think the implementation has to be more
-generic. And I'm currently about to add support for a few plugins/hooks
-to cgit which I think can be used to achieve the same result so lets see
-how that works out first, ok?
-</p>
+  <p>
+    I like the result, but I think the implementation has to be more generic.
+    And I'm currently about to add support for a few plugins/hooks to cgit
+    which I think can be used to achieve the same result so lets see how that
+    works out first, ok?
+  </p>
 </blockquote>
 <p>
-I'll be working with Lars on getting a cleaner solution merged into his
-tree once he's added support for plugins.
+  I'll be working with Lars on getting a cleaner solution merged into his tree
+  once he's added support for plugins.
 </p>

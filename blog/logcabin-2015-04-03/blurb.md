@@ -3,10 +3,9 @@ of [LogCabin](https://github.com/logcabin/logcabin). This entry describes
 progress towards the upcoming 1.0.0 release of LogCabin, a useful new
 command-line client to access LogCabin, and several other improvements.
 
-----
+---
 
-Upcoming 1.0.0 Release
-----------------------
+## Upcoming 1.0.0 Release
 
 We're pushing for a 1.0.0 release of LogCabin in the coming weeks. It's close.
 [Milestone 1.0.0](https://github.com/logcabin/logcabin/milestones/1.0.0) on
@@ -42,8 +41,7 @@ numbering, and the new
 file describes the various pieces that make up LogCabin's public API. That file
 will also include release and upgrade notes moving forwards.
 
-Command-Line Client
--------------------
+## Command-Line Client
 
 LogCabin now includes a [command-line
 client](https://github.com/logcabin/logcabin/issues/101) that allows accessing
@@ -119,8 +117,7 @@ every invocation, so I'd advise against using it for operations that are
 repeated frequently; see also [issue
 116](https://github.com/logcabin/logcabin/issues/116).
 
-Big State Machines
-------------------
+## Big State Machines
 
 LogCabin was initially developed to store small amounts of metadata, but some
 users might want to store more data in it (gigabytes) or they might do so by
@@ -136,8 +133,7 @@ function as intended with large state machines and snapshots, but memory usage
 and availability could be improved in the future; see issues labeled
 [bigdata](https://github.com/logcabin/logcabin/labels/bigdata) for more detail.
 
-Misc
-----
+## Misc
 
 The TCP connection timeout is now
 [configurable](https://github.com/logcabin/logcabin/issues/111), so that an
@@ -169,8 +165,7 @@ include into their own logging facilities. These things are available in the
 namespace `LogCabin::Client::Debug` after including `<LogCabin/Debug.h>` and
 `<LogCabin/Client.h>`.
 
-Next
-----
+## Next
 
 Next up, I plan to continue the push for 1.0.0 and will hopefully get a release
 out the door.
