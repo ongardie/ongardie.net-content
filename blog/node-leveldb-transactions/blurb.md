@@ -218,7 +218,8 @@ transaction from blindly overwriting the other's updates. For example:
     commit
                             commit
 
-If we suppose every account started with \$100 and transaction 2 commits after
+<!-- prettier-ignore -->
+If we suppose every account started with $100 and transaction 2 commits after
 transaction 1, we'd end up with `account1` having $50, `account2` and
 `account3` having $150 each, and some accountant yelling at us about the $50
 discrepancy. Instead, what we'd like is for one of these transactions to abort
@@ -244,11 +245,12 @@ When a `put` or `delete` occurred within a transaction, txlib would:
 - Otherwise, set `lastUpdate[key]` to the current transaction.
 - Buffer up the update to be issued later in an atomic batch.
 
-In the above example, transaction 2 would be aborted as soon as it called `put account1 bal1`, since transaction 1 would have already touched the key in the
-`lastUpdate` map. This isn't quite optimal: if transaction 1 happened to abort,
-transaction 2 would have aborted unnecessarily. However, this is probably
-uncommon, and the simplicity of the approach probably outweighs any performance
-concerns.
+In the above example, transaction 2 would be aborted as soon as it called
+`put account1 bal1`, since transaction 1 would have already touched the key in
+the `lastUpdate` map. This isn't quite optimal: if transaction 1 happened to
+abort, transaction 2 would have aborted unnecessarily. However, this is
+probably uncommon, and the simplicity of the approach probably outweighs any
+performance concerns.
 
 Note that normal `put` and `delete` operations (those outside a transaction)
 would have to update the `lastUpdate` map as well, so that transactions would

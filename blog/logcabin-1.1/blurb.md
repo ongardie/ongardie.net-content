@@ -96,8 +96,9 @@ more of an integrator than a maintainer, answering questions and reviewing
 patches as they come up. Scale plans to continue using LogCabin and will take a
 more active role in maintaining it and building out new features as needed.
 
+<!-- prettier-ignore -->
 I'll take this opportunity to mention that Scale is looking for several more
-engineers, and they've recently closed an \$18 million round of funding.
+engineers, and they've recently closed an $18 million round of funding.
 Feel free to contact me directly if you'd like to chat about what it's like at
 Scale, and I can put you in touch with the right people there.
 
