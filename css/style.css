@@ -14,22 +14,22 @@
 
 /* Menu */
 
-#menu {
+nav {
   font-family: monospace;
   border: 2px solid #18d4f5;
   text-align: right;
 }
 
-#menu a {
+nav a {
   text-decoration: none;
 }
 
-div#menu ul li {
+nav ul li {
   font-size: 110%;
   list-style-type: none;
 }
 
-div#menu .home {
+nav .home {
   font-size: 120%;
   letter-spacing: 1px;
   border-bottom: 2px solid #c0c0c0;
@@ -37,51 +37,38 @@ div#menu .home {
   cursor: default;
 }
 
-div#menu .home a:hover {
+nav .home a:hover {
   color: #18d4f5;
-}
-
-/* Header */
-
-#header {
-  font-family: monospace;
-  font-weight: bold;
-  border-bottom: 2px solid #18d4f5;
-  color: #505050;
-}
-
-#header a {
-  text-decoration: none;
 }
 
 /* Footer */
 
-#footer {
+footer {
   font-family: monospace;
   text-align: right;
   color: #a0a0a0;
 }
 
-#footer a {
+footer a {
   color: #a0a0a0;
   text-decoration: none;
 }
 
-#footer a:hover {
+footer a:hover {
   text-decoration: underline;
 }
 
-/* Content */
+/* Main */
 
-#content {
+main {
   font-family: sans-serif;
 }
 
-#content a {
+main a {
   color: #505050;
 }
 
-#content a:hover {
+main a:hover {
   color: #18d4f5;
 }
 
@@ -145,7 +132,7 @@ h6 a {
   text-decoration: none;
 }
 
-#content h1 {
+main h1 {
   font-size: 180%;
 }
 
@@ -186,6 +173,11 @@ blockquote {
   font-style: italic;
 }
 
+time {
+  font-family: monospace;
+  font-size: 80%;
+}
+
 /* Classes */
 
 .center {
@@ -194,11 +186,6 @@ blockquote {
 
 .right {
   text-align: right;
-}
-
-.small {
-  font-family: monospace;
-  font-size: 80%;
 }
 
 table {

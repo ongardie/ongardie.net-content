@@ -1,13 +1,15 @@
-<div style="padding-bottom: 5px;">
-  <span class="small">
-    ${date}
-  </span>
-  % if tags:
-    |
-    % for tag in tags:
-      <a href="${URL_PREFIX}/blog/+${tag}" class="small">${tag}</a>
-    % endfor
-  % endif
-</div>
+<article>
+  <div style="padding-bottom: 5px;">
+    <time datetime="${date}">
+      ${date}
+    </time>
+    % if tags:
+      |
+      % for tag in tags:
+        <a href="${URL_PREFIX}/blog/+${tag}" class="small">${tag}</a>
+      % endfor
+    % endif
+  </div>
 
-${blurb}
+  ${blurb}
+</article>

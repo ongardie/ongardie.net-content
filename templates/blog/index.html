@@ -1,7 +1,7 @@
 % for article in articles:
-<div class="section">
+<article>
   <h1><a href="${URL_PREFIX}/blog/${article['slug']}/">${article['title']}</a></h1>
-  <span class="small">${article['date']}</span>
+  <time datetime="${article['date']}">${article['date']}</time>
   % if article['tags']:
     |
     % for tag in article['tags']:
@@ -16,5 +16,5 @@
     ${article['blurb']}
   % endif
   </div>
-</div>
+</article>
 % endfor

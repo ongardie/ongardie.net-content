@@ -28,36 +28,33 @@
     <div id="line2"></div>
     <div id="line3"></div>
 
-    <h1 id="header">${PAGE_TITLE}</h1>
+    <header>
+      <h1>${PAGE_TITLE}</h1>
+    </header>
 
-    <div id="menu">
+    <nav>
       <ul>
         <li><span class="home">ongardie.net</span></li>
         <li><a href="${URL_PREFIX}/">diego ongaro</a></li>
         <li><a href="${URL_PREFIX}/pubs/">pubs</a></li>
         <li>
           <a href="${URL_PREFIX}/blog/">blog</a>
-          <a href="${URL_PREFIX}/blog/rss.xml">
-            <img
+          <a href="${URL_PREFIX}/blog/rss.xml"
+            ><img
               src="${VAR_URL_PREFIX}/blog/rss.png"
               style="margin: 0; padding: 0; border: 0"
               alt="RSS"
-            />
-          </a>
+          /></a>
         </li>
         <li><a href="${URL_PREFIX}/misc/">misc</a></li>
       </ul>
-    </div>
+    </nav>
 
-    <div id="content">
-      ${CONTENT}
-      <div style="clear: both">&nbsp;</div>
-    </div>
+    <main>${CONTENT}</main>
 
-    <div id="footer">
-      (c) 2007-2020 <a href="${URL_PREFIX}/diego/">Diego Ongaro</a><br />
-      <a href="${URL_PREFIX}/misc/#source">this website is open source</a
-      ><br />
-    </div>
+    <footer>
+      (c) 2007-2020 <a href="${URL_PREFIX}/">Diego Ongaro</a><br />
+      <a href="${URL_PREFIX}/misc/#source">this website is open source</a>
+    </footer>
   </body>
 </html>
