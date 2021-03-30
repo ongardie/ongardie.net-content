@@ -92,6 +92,9 @@ The contents files are kept in `/var/lib/apt/lists/` and have names like
 be decompressed with `lz4 -d < FILE` or
 `/usr/lib/apt/apt-helper cat-file FILE`.
 
+**Update** (2021-03-29): You might not have the contents files on your system.
+If you don't, install the `apt-file` package and then run `apt update`.
+
 Before, the code would check if each line started with four separate strings. I
 optimized that to use a pre-compiled regular expression, which is more
 efficient. I also deferred decoding the line from an array of bytes into a
@@ -287,6 +290,10 @@ in my configs repo, along with how to enable it for
 
 If you're removing `command-not-found` from your system, use
 `apt purge command-not-found` to get rid of its index, too.
+
+**Update** (2021-03-29): Note that you'll want to keep the `apt-file` package
+installed, since that package registers hooks with apt to download the package
+contents files.
 
 I hope this was useful or that you learned a trick or two. I found it to be a
 frustrating exercise. I'm a professional software engineer that's comfortable
